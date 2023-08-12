@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'ecomhexagn',
+        'database' => 'ecomhaxegn',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

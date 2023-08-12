@@ -35,10 +35,11 @@ $routes->get('/dashboard', 'Admin::dashboard');
 
 // ============End Admin Routes============
 
-
-
 // ============Start FrontEnd Routes============
 $routes->get('/', 'Home::index');
+$routes->get('/cart', 'Home::cart');
+$routes->get('/singleproduct', 'Home::singleproduct');
+$routes->get('/allproducts', 'Home::allproducts');
 // ============End FrontEnd Routes============
 
 service('auth')->routes($routes);
