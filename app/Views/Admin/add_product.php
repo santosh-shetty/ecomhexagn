@@ -29,23 +29,19 @@
         <i class="settings-close ti-close"></i>
         <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
-                    aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
-                    aria-controls="chats-section">CHATS</a>
+                <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
             </li>
         </ul>
         <div class="tab-content" id="setting-content">
-            <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
-                aria-labelledby="todo-section">
+            <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
                 <div class="add-items d-flex px-3 mb-0">
                     <form class="form w-100">
                         <div class="form-group d-flex">
                             <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                            <button type="submit" class="add btn btn-primary todo-list-add-btn"
-                                id="add-task">Add</button>
+                            <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
                         </div>
                     </form>
                 </div>
@@ -120,8 +116,7 @@
             <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
                 <div class="d-flex align-items-center justify-content-between border-bottom">
                     <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                    <small
-                        class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                    <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
                         All</small>
                 </div>
                 <ul class="chat-list">
@@ -194,11 +189,11 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <!-- Check if there are any validation errors -->
-            <?php if (session()->has('errors')): ?>
+            <?php if (session()->has('errors')) : ?>
                 <div class="alert alert-danger">
                     <ul>
                         <!-- Loop through each error message -->
-                        <?php foreach (session('errors') as $error): ?>
+                        <?php foreach (session('errors') as $error) : ?>
                             <li>
                                 <?= esc($error) ?>
                             </li>
@@ -206,8 +201,7 @@
                     </ul>
                 </div>
             <?php endif; ?>
-            <form class="form-sample" action="<?= base_url('admin/product/add') ?>" method="post"
-            enctype="multipart/form-data">
+            <form class="form-sample" action="<?= base_url('admin/product/add') ?>" method="post" enctype="multipart/form-data">
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
@@ -232,8 +226,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Price</label>
                                         <div class="col-sm-9">
-                                            <input type="number" placeholder="Product Price" class="form-control"
-                                                name="product_price" />
+                                            <input type="number" placeholder="Product Price" class="form-control" name="product_price" />
                                         </div>
                                     </div>
                                 </div>
@@ -241,8 +234,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Quantity</label>
                                         <div class="col-sm-9">
-                                            <input type="number" placeholder="Product Quantity" class="form-control"
-                                                name="quantity" />
+                                            <input type="number" placeholder="Product Quantity" class="form-control" name="quantity" />
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +245,7 @@
                                         <label class="col-sm-3 col-form-label">Category</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="category_id">
-                                                <?php foreach ($categories as $category): ?>
+                                                <?php foreach ($categories as $category) : ?>
                                                     <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -267,8 +259,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
-                                                    <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="1"> Active
+                                                    <input style="margin-right: 10px;" type="radio" name="status" value="1"> Active
                                                 </label>
                                             </div>
                                         </div>
@@ -276,8 +267,7 @@
                                         <div class="col-sm-5">
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
-                                                    <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="0"> In Active
+                                                    <input style="margin-right: 10px;" type="radio" name="status" value="0"> In Active
                                                 </label>
                                             </div>
                                         </div>
@@ -292,7 +282,7 @@
                                         <label class="col-sm-3 col-form-label">Brand</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="brand_id">
-                                                <?php foreach ($brands as $brand): ?>
+                                                <?php foreach ($brands as $brand) : ?>
                                                     <option value="<?= $brand['brand_id'] ?>"><?= $brand['brand_name'] ?>
                                                     </option>
                                                 <?php endforeach; ?>
@@ -333,23 +323,22 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Product Image</label>
-                                <input type="file" name="product_image" id="fileInput" class="file-upload-default"
-                                    onchange="updateFileName()">
+                                <input type="file" name="product_image" id="fileInput" class="file-upload-default" onchange="updateFileName()">
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" id="fileInfo" disabled
-                                        placeholder="Upload Image">
+                                    <input type="text" class="form-control file-upload-info" id="fileInfo" disabled placeholder="Upload Image">
                                     <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button"
-                                            id="uploadButton">Upload</button>
+                                        <button class="file-upload-browse btn btn-primary" type="button" id="uploadButton">Upload</button>
                                     </span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleTextarea1">Product Discription</label>
-                                        <textarea class="form-control" id="exampleTextarea1" rows="4"
-                                            name="product_desc"></textarea>
+                                        <label for="exampleTextarea1">Product Description</label>
+                                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="product_desc"></textarea>
+                                        <script>
+                                            CKEDITOR.replace('product_desc');
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +372,7 @@
         }
     }
 
-    document.getElementById('uploadButton').addEventListener('click', function () {
+    document.getElementById('uploadButton').addEventListener('click', function() {
         document.getElementById('fileInput').click();
     });
 </script>
