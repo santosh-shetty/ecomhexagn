@@ -31,7 +31,18 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // ============Start Admin Routes============
+// $routes->get('/dashboard', 'Admin::dashboard');
 $routes->get('/dashboard', 'Admin::dashboard');
+// $routes->get('/dashboard', 'Admin::dashboard', ['filter' => 'auth', 'filterGroup' => 'admin']);
+
+// Products routes
+$routes->get('/admin/product/all_products', 'Admin::all_products');
+$routes->post('/admin/product/add', 'Admin::add');  // verify before add product
+$routes->get('/admin/product/add_product', 'Admin::add_product');
+$routes->get('/admin/product/delete_product/(:num)', 'Admin::delete_product/$1');
+$routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
+// $routes->post('/admin/product/update', 'Admin::update');
+
 
 // ============End Admin Routes============
 
