@@ -46,10 +46,11 @@ $routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
 
 // ============End Admin Routes============
 
-
-
 // ============Start FrontEnd Routes============
 $routes->get('/', 'Home::index');
+$routes->get('/cart', 'Home::cart');
+$routes->get('/singleproduct', 'Home::singleproduct');
+$routes->get('/allproducts', 'Home::allproducts');
 // ============End FrontEnd Routes============
 
 service('auth')->routes($routes);
