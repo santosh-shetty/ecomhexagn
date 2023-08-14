@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Categories;
+use App\Models\Products;
+
 class Home extends BaseController
 {
     public function index(): string
@@ -19,5 +22,17 @@ class Home extends BaseController
     public function allproducts()
     {
         return view('frontEnd/allproducts');
+    }
+
+
+
+
+    public function home()
+    {
+        $productModel = new Products();
+        $categoryModel = new Categories();
+        $data['products'] = $productModel->where('feature_product',1)->find();
+        $data['categories'] = $categoryModel->findAll();
+        return view('frontEnd/home',$data);
     }
 }

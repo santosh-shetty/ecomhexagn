@@ -63,7 +63,7 @@
 
                                                 <!-- Edit Product -->
                                                 <a
-                                                    href="<?= base_url('/admin/product/view_product/' . $product->product_id) ?>">
+                                                    href="<?= base_url('/admin/product/edit_product/' . $product->product_id) ?>">
                                                     <button type="button" class="btn btn-success btn-rounded btn-icon">
                                                         <i class="ti-pencil-alt"></i>
                                                     </button>

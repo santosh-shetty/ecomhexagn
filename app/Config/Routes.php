@@ -38,6 +38,7 @@ $routes->get('/dashboard', 'Admin::dashboard');
 // Products routes
 $routes->get('/admin/product/all_products', 'Admin::all_products');
 $routes->post('/admin/product/check_add_product', 'Admin::check_add_product');  // verify before add product
+$routes->post('/admin/product/check_edit_product', 'Admin::check_edit_product');  // verify before edit/ update Category
 $routes->get('/admin/product/add_product', 'Admin::add_product');
 $routes->get('/admin/product/delete_product/(:num)', 'Admin::delete_product/$1');
 $routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
@@ -56,10 +57,13 @@ $routes->get('/admin/category/delete_category/(:num)', 'Admin::delete_category/$
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
-$routes->get('/', 'Home::index');
-$routes->get('/cart', 'Home::cart');
-$routes->get('/singleproduct', 'Home::singleproduct');
-$routes->get('/allproducts', 'Home::allproducts');
+// $routes->get('/', 'Home::index');
+// $routes->get('/cart', 'Home::cart');
+// $routes->get('/singleproduct', 'Home::singleproduct');
+// $routes->get('/allproducts', 'Home::allproducts');
+
+$routes->get('/', 'Home::home');
+
 // ============End FrontEnd Routes============
 
 service('auth')->routes($routes);

@@ -140,10 +140,9 @@
                                 </div>
                             </div>
                             <div class="row">
-
                                 <div class="col-md-12">
-                                    <a href="<?= base_url('admin/product/edit_product/').$product->product_id ?>">
-                                    <button type="submit" class="btn btn-primary">Edit This Product</button></a>
+                                    <a href="<?= base_url('admin/product/edit_product/') . $product->product_id ?>"
+                                        class="btn btn-primary">Edit This Product</a>
                                 </div>
                             </div>
                         </div>

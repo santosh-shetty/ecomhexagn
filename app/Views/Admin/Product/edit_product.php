@@ -8,8 +8,22 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <!-- Check if there are any validation errors -->
-            <form class="form-sample" action="<?= base_url('admin/product/add') ?>" method="post"
+            <form class="form-sample" action="<?= base_url('/admin/product/check_edit_product') ?>" method="post"
                 enctype="multipart/form-data">
+                <!-- Check if there are any validation errors -->
+                <?php if (session()->has('errors')): ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <!-- Loop through each error message -->
+                            <?php foreach (session('errors') as $error): ?>
+                                <li>
+                                    <?= esc($error) ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                <input type="hidden" value="<?= $product->product_id ?>" name="product_id">
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
@@ -55,8 +69,13 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Category</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="category_name">
-                                                <option value="<?= $product->category_name ?>"><?= $product->category_name ?></option>
+                                            <select class="form-control" name="category_id">
+                                                <?php foreach ($categories as $category): ?>
+                                                    <option value="<?= $category['category_id'] ?>"
+                                                        <?= $product->category_id == $category['category_id'] ? "selected" : ""; ?>>
+                                                        <?= $category['category_name'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
@@ -69,7 +88,7 @@
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
                                                     <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="1" checked> Active
+                                                        value="1" <?= $product->status == 1 ? "checked" : "" ?>> Active
                                                 </label>
                                             </div>
                                         </div>
@@ -78,7 +97,7 @@
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
                                                     <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="0"> In Active
+                                                        value="0" <?= $product->status == 0 ? "checked" : "" ?>> In Active
                                                 </label>
                                             </div>
                                         </div>
@@ -93,8 +112,11 @@
                                         <label class="col-sm-3 col-form-label">Brand</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="brand_id">
-                                                <option value="<?= $product->brand_name ?>"><?= $product->brand_name ?>
-                                                </option>
+                                                <?php foreach ($brands as $brand): ?>
+                                                    <option value="<?= $brand['brand_id'] ?>"
+                                                        <?= $product->brand_id == $brand['brand_id'] ? "selected" : "" ?>><?= $brand['brand_name'] ?>
+                                                    </option>
+                                                <?php endforeach; ?>
                                             </select>
 
                                         </div>
@@ -118,12 +140,16 @@
                                     onchange="updateFileName()">
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" id="fileInfo" disabled
-                                        placeholder="<?= $product->product_image ?>">
-                                    <span class="input-group-append">
+                                        placeholder="<?= $product->product_image ?>"
+                                        value=" <?= $product->product_image ?> ">
+                                    <span class=" input-group-append">
                                         <button class="file-upload-browse btn btn-primary" type="button"
                                             id="uploadButton">Upload</button>
                                     </span>
                                 </div>
+                                <img class="img-thumbnail mt-2"
+                                    src="<?= base_url('/assets/images/upload/') . $product->product_image ?>" alt=""
+                                    srcset="">
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -140,7 +166,7 @@
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary">Add Product</button>
+                                    <button type="submit" class="btn btn-primary">Update Product</button>
                                 </div>
                             </div>
                         </div>
