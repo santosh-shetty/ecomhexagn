@@ -28,33 +28,34 @@
         <h2 class="title">Latest Products</h2>
         <div class="row">
             <div class="col-4">
-                <img src="<?= base_url('assets/front/images/product-1.jpeg'); ?>">
-                <h4>Nike Air Huarache</h4>
-                <div class="rating">
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star_half</i>
+                <div class="product-card">
+                    <img src="<?= base_url('assets/front/images/product-1.jpeg'); ?>">
+                    <h4>Nike Air Huarache</h4>
+                    <button>
+                        <a href="#">
+                            <div class="add-to-cart"> Add to Cart </div>
+                        </a>
+                    </button>
+                    <p>Rs.10,290</p>
                 </div>
-                <p>Rs.10,290</p>
             </div>
         </div>
+
 
         <!---------------------------------------------Featured Products---------------------------------------------->
         <h2 class="title">Featured Products</h2>
         <div class="row">
             <div class="col-4">
-                <img src="<?= base_url('assets/front/images/product-5.jpeg'); ?>">
-                <h4>Nike Air Zoom-Type Premium</h4>
-                <div class="rating">
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star</i>
-                    <i class="material-icons">star_half</i>
+                <div class="product-card">
+                    <img src="<?= base_url('assets/front/images/product-5.jpeg'); ?>">
+                    <h4>Nike Air Zoom-Type Premium</h4>
+                    <button>
+                        <a href="#">
+                            <div class="add-to-cart"> Add to Cart </div>
+                        </a>
+                    </button>
+                    <p>Rs.13,495</p>
                 </div>
-                <p>Rs.13,495</p>
             </div>
         </div>
         <!-------------------------------------------------------OFFER-------------------------------------------------->
@@ -71,7 +72,7 @@
                             <small>The adidas Yeezy 500 High “Frosted Blue” is an April 2021 colorway of the high-top sneaker by
                                 Kanye West.</small>
                             <br>
-                            <a href="yeezy-detail.html" class="btn">Buy Now &#8594;</a>
+                            <a href="#" class="btn">Buy Now &#8594;</a>
                         </div>
                     </div>
 
