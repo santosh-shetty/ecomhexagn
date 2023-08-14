@@ -50,9 +50,14 @@ $routes->get('/admin/category/view_category/(:num)', 'Admin::view_category/$1');
 $routes->get('/admin/category/edit_category/(:num)', 'Admin::edit_category/$1');
 $routes->post('/admin/category/check_edit_category', 'Admin::check_edit_category');  // verify before edit/ update Category
 $routes->get('/admin/category/delete_category/(:num)', 'Admin::delete_category/$1');
-
-
-
+//Brand Routes
+$routes->get('/admin/brands/all_brands', 'Admin::all_brands');
+$routes->get('/admin/brands/add_brands', 'Admin::add_brands');
+$routes->post('/admin/brands/check_add_brands', 'Admin::check_add_brands');
+$routes->get('/admin/brands/view_brands/(:num)', 'Admin::view_brands/$1');
+$routes->get('/admin/brands/edit_brands/(:num)', 'Admin::edit_brands/$1');
+$routes->post('/admin/brands/check_edit_brands', 'Admin::check_edit_brands');
+$routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
