@@ -135,7 +135,6 @@ class Admin extends BaseController
       $errorMessage = "Product with ID '{$id}' not found.";
       return redirect()->to(base_url('admin/product/all_products'))->with('error', $errorMessage);
     }
-
   }
   public function view_product($id)
   {
@@ -162,8 +161,8 @@ class Admin extends BaseController
   // ========== Start Categories Controller Function =========//
   public function all_categories()
   {
-    $categoriesModal = new Categories();
-    $data['categories'] = $categoriesModal->findAll();
+    $categoriesModel = new Categories();
+    $data['categories'] = $categoriesModel->findAll();
     return view('admin/category/all_categories', $data);
   }
 
@@ -175,32 +174,32 @@ class Admin extends BaseController
   }
 
   public function check_add_category()
-{
+  {
     $categoryModel = new Categories();
     $Rules = [
-        'category_name' => 'required',
-        'category_desc' => 'required',
-        'status' => 'required',
-        'slug' => 'required',
+      'category_name' => 'required',
+      'category_desc' => 'required',
+      'status' => 'required',
+      'slug' => 'required',
     ];
 
     // Validate fields
     if ($this->validate($Rules)) {
-        $data = [
-            'category_name' => $this->request->getVar('category_name'),
-            'category_desc' => $this->request->getVar('category_desc'),
-            'status' => $this->request->getVar('status'),
-            'slug' => $this->request->getVar('slug'),
-        ];
+      $data = [
+        'category_name' => $this->request->getVar('category_name'),
+        'category_desc' => $this->request->getVar('category_desc'),
+        'status' => $this->request->getVar('status'),
+        'slug' => $this->request->getVar('slug'),
+      ];
 
-        $categoryModel->insert($data);
-        $successMessage = "Category has been added successfully.";
-        return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
+      $categoryModel->insert($data);
+      $successMessage = "Category has been added successfully.";
+      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
     } else {
-        // Validation failed, redirect back with validation errors
-        return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+      // Validation failed, redirect back with validation errors
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
-}
+  }
 
   public function view_category($id)
   {
@@ -236,8 +235,7 @@ class Admin extends BaseController
 
       $categoryModel->update(['category_id' => $id], $data);
       $successMessage = "Category has been Updated successfully.";
-      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
-      ;
+      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);;
     } else {
       // Validation failed, redirect back with validation errors
       return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));
@@ -262,8 +260,109 @@ class Admin extends BaseController
       $errorMessage = "Category with ID '{$id}' not found.";
       return redirect()->to(base_url('admin/category/all_categories'))->with('error', $errorMessage);
     }
-
   }
   // ========== End Categories Controller Function =========//
 
+  // ========== Start Brand Controller Function =========//
+  public function all_brands()
+  {
+    $brandsModel = new Brands();
+    $data['brands'] = $brandsModel->findAll();
+    return view('admin/Brand/all_brands', $data);
+  }
+  public function add_brands()
+  {
+    $brandsModel = new Brands();
+    return view('admin/Brand/add_brands');
+  }
+
+  public function check_add_brands()
+  {
+    $brandsModel = new Brands();
+    $Rules = [
+      'brand_name' => 'required',
+      'brand_desc' => 'required',
+      // 'status' => 'required',
+      // 'slug' => 'required',
+    ];
+
+    // Validate fields
+    if ($this->validate($Rules)) {
+      $data = [
+        'brand_name' => $this->request->getVar('brand_name'),
+        'brand_desc' => $this->request->getVar('brand_desc'),
+        // 'status' => $this->request->getVar('status'),
+        // 'slug' => $this->request->getVar('slug'),
+      ];
+
+      $brandsModel->insert($data);
+      $successMessage = "Brand has been added successfully.";
+      return redirect()->to(base_url('/admin/brands/all_brands'))->with('success', $successMessage);
+    } else {
+      // Validation failed, redirect back with validation errors
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+  }
+  public function view_brands($id)
+  {
+    $brandsModel = new Brands();
+    $data['brands'] = $brandsModel->find($id);
+    return view('admin/Brand/view_brands', $data);
+  }
+
+  public function edit_brands($id)
+  {
+    $brandsModel = new Brands();
+    $data['brands'] = $brandsModel->find($id);
+    return view('admin/Brand/edit_brands', $data);
+  }
+  public function check_edit_brands()
+  {
+    $brandsModel = new Brands();
+    $Rules = [
+      'brand_name' => 'required',
+      'brand_desc' => 'required',
+      // 'status' => 'required',
+      // 'slug' => 'required',
+    ];
+
+    // Validate  fields
+    if ($this->validate($Rules)) {
+      $data = [
+        'brand_name' => $this->request->getVar('brand_name'),
+        'brand_desc' => $this->request->getVar('brand_desc'),
+        // 'status' => $this->request->getVar('status'),
+        // 'slug' => $this->request->getVar('slug'),
+      ];
+      $id = $this->request->getVar('brand_id');
+
+      $brandsModel->update(['brand_id' => $id], $data);
+      $successMessage = "Brand has been Updated successfully.";
+      return redirect()->to(base_url('/admin/brand/all_brands'))->with('success', $successMessage);;
+    } else {
+      // Validation failed, redirect back with validation errors
+      return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));
+    }
+  }
+
+  public function delete_brands($id)
+  {
+    $brandsModel = new Brands();
+    $brands = $brandsModel->find($id);
+
+    if ($brands) {
+      // Delete associated products first
+      $productModel = new Products();
+      $productModel->where('brand_id', $id)->delete();
+
+      // Then delete the Brand
+      $brandsModel->delete($id);
+
+      $successMessage = "Brands '{$brands['brand_name']}' has been deleted successfully. and also delete that product which assign this brand '{$brands['brand_name']}'";
+      return redirect()->to(base_url('admin/brands/all_brands'))->with('success', $successMessage);
+    } else {
+      $errorMessage = "Brand with ID '{$id}' not found.";
+      return redirect()->to(base_url('admin/brands/all_brands'))->with('error', $errorMessage);
+    }
+  }
 }
