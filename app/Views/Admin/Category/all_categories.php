@@ -1,6 +1,5 @@
 <!-- Include Header -->
 <?= $this->include('admin/common_layout/topbar') ?>
-<!-- partial -->
 <div class="container-fluid page-body-wrapper">
     <!-- Include Sidebar-->
     <?= $this->include('admin/common_layout/sidebar.php') ?>
@@ -10,7 +9,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">All Products</h4>
+                        <h4 class="card-title">All Category</h4>
                         <div class="table-responsive">
                             <?php if (session()->has('success')): ?>
                                 <div class="alert alert-success">
@@ -26,35 +25,34 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Product Name</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th>Brand</th>
+                                        <th>Sr no.</th>
+                                        <th>Category Name</th>
+                                        <th>Category Description</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($products as $product): ?>
+                                    <?php $i = 1;
+                                    foreach ($categories as $category):
+                                        ?>
                                         <tr>
                                             <td>
-                                                <?= $product->product_name ?>
-                                            </td>
-                                            <td> &#8377;
-                                                <?= $product->product_price ?>
+                                                <?= $i; ?>
                                             </td>
                                             <td>
-                                                <?= $product->category_name ?>
+                                                <?= $category['category_name'] ?>
                                             </td>
                                             <td>
-                                                <?= $product->brand_name ?>
+                                                <?= $category['category_desc'] ?>
                                             </td>
+
                                             <td><label class="badge badge-danger">
-                                                    <?= $product->status == 1 ? "Active" : "In active" ?>
+                                                    <?= $category['status'] == 1 ? "Active" : "In active" ?>
                                                 </label></td>
                                             <td>
                                                 <!-- View Product -->
-                                                <a href="<?= base_url('/admin/product/view_product/' . $product->product_id) ?>"
+                                                <a href="<?= base_url('/admin/category/view_category/' . $category['category_id']) ?>"
                                                     class="btn btn-warning btn-rounded btn-icon"> <button type="button"
                                                         class="btn btn-warning btn-rounded btn-icon">
                                                         <i class="ti-eye"></i>
@@ -63,22 +61,23 @@
 
                                                 <!-- Edit Product -->
                                                 <a
-                                                    href="<?= base_url('/admin/product/view_product' . $product->product_id) ?>">
+                                                    href="<?= base_url('/admin/category/edit_category/' . $category['category_id']) ?>">
                                                     <button type="button" class="btn btn-success btn-rounded btn-icon">
                                                         <i class="ti-pencil-alt"></i>
                                                     </button>
                                                 </a>
                                                 <!-- Delete Product -->
-
                                                 <a
-                                                    href="<?= base_url('/admin/product/delete_product/' . $product->product_id) ?>">
+                                                    href="<?= base_url('/admin/category/delete_category/' . $category['category_id']) ?>">
                                                     <button type="button" class="btn btn-danger btn-rounded btn-icon">
                                                         <i class="ti-solid ti-trash"></i>
                                                     </button>
                                                 </a>
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php  $i++;  endforeach;
+                                   ?>
+
 
                                 </tbody>
                             </table>

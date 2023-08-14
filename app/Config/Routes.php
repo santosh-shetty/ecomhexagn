@@ -37,11 +37,20 @@ $routes->get('/dashboard', 'Admin::dashboard');
 
 // Products routes
 $routes->get('/admin/product/all_products', 'Admin::all_products');
-$routes->post('/admin/product/add', 'Admin::add');  // verify before add product
+$routes->post('/admin/product/check_add_product', 'Admin::check_add_product');  // verify before add product
 $routes->get('/admin/product/add_product', 'Admin::add_product');
 $routes->get('/admin/product/delete_product/(:num)', 'Admin::delete_product/$1');
 $routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
-// $routes->post('/admin/product/update', 'Admin::update');
+$routes->get('/admin/product/edit_product/(:num)', 'Admin::edit_product/$1');
+// Categories Routes
+$routes->get('/admin/category/all_categories', 'Admin::all_categories');
+$routes->get('/admin/category/add_category', 'Admin::add_category');
+$routes->post('/admin/category/check_add_category', 'Admin::check_add_category');  // verify before add Category
+$routes->get('/admin/category/view_category/(:num)', 'Admin::view_category/$1');
+$routes->get('/admin/category/edit_category/(:num)', 'Admin::edit_category/$1');
+$routes->post('/admin/category/check_edit_category', 'Admin::check_edit_category');  // verify before edit/ update Category
+$routes->get('/admin/category/delete_category/(:num)', 'Admin::delete_category/$1');
+
 
 
 // ============End Admin Routes============

@@ -23,7 +23,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Product Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control"  value="<?= $product->product_name ?>" name="product_name" />
+                                            <input type="text" class="form-control"
+                                                value="<?= $product->product_name ?>" name="product_name" readonly />
                                         </div>
                                     </div>
                                 </div>
@@ -35,8 +36,7 @@
                                         <label class="col-sm-3 col-form-label">Price</label>
                                         <div class="col-sm-9">
                                             <input type="number" placeholder="Product Price" class="form-control"
-                                            value="<?= $product->product_price ?>"
-                                                name="product_price" />
+                                                value="<?= $product->product_price ?>" name="product_price" readonly />
                                         </div>
                                     </div>
                                 </div>
@@ -44,8 +44,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Quantity</label>
                                         <div class="col-sm-9">
-                                            <input type="number" placeholder="Product Quantity" class="form-control" value="<?= $product->quantity ?>"
-                                                name="quantity" />
+                                            <input type="number" placeholder="Product Quantity" class="form-control"
+                                                value="<?= $product->quantity ?>" name="quantity" readonly />
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Category</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="category_name">
+                                            <select class="form-control" name="category_name" readonly>
                                                 <option value="<?= $product->category_name ?>"><?= $product->category_name ?></option>
                                             </select>
                                         </div>
@@ -69,7 +69,7 @@
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
                                                     <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="1" checked> Active
+                                                        value="1" <?= $product->status == 1 ? "checked" : "" ?>> Active
                                                 </label>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
                                                     <input style="margin-right: 10px;" type="radio" name="status"
-                                                        value="0"> In Active
+                                                        value="0" <?= $product->status == 0 ? "checked" : "" ?>> In Active
                                                 </label>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Brand</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="brand_id">
+                                            <select class="form-control" name="brand_id readonly">
                                                 <option value="<?= $product->brand_name ?>"><?= $product->brand_name ?>
                                                 </option>
                                             </select>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -117,11 +117,13 @@
                                 <input type="file" name="product_image" id="fileInput" class="file-upload-default"
                                     onchange="updateFileName()">
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" id="fileInfo" disabled 
-                                        placeholder="<?= $product->product_image?>">
+                                    <!-- <input type="text" class="form-control file-upload-info" id="fileInfo" disabled
+                                        placeholder="<?= $product->product_image ?>"> -->
+                                    <img src="<?= base_url('assets/images/upload/') . $product->product_image ?>" alt=""
+                                        srcset="" class="img-thumbnail">
                                     <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button"
-                                            id="uploadButton">Upload</button>
+                                        <!-- <button class="file-upload-browse btn btn-primary" type="button"
+                                            id="uploadButton">Upload</button> -->
                                     </span>
                                 </div>
                             </div>
@@ -129,15 +131,19 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="exampleTextarea1">Product Discription</label>
-                                        <textarea class="form-control" id="exampleTextarea1" rows="4" value="<?= $product->product_desc?>"
-                                            name="product_desc"></textarea>
+                                        <textarea class="form-control" id="exampleTextarea1" rows="4"
+                                            name="product_desc"><?= $product->product_desc ?></textarea>
+                                        <script>
+                                            CKEDITOR.replace('product_desc');
+                                        </script>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary">Add Product</button>
+                                    <a href="<?= base_url('admin/product/edit_product/').$product->product_id ?>">
+                                    <button type="submit" class="btn btn-primary">Edit This Product</button></a>
                                 </div>
                             </div>
                         </div>

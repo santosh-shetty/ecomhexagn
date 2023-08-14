@@ -8,7 +8,7 @@ class Categories extends Model
 {
     protected $table = 'categories';
     protected $primaryKey = 'category_id';
-    protected $allowedFields = ['category_name','category_desc','category_added_at'];
+    protected $allowedFields = ['category_name','category_desc','status','slug','category_added_at'];
 
     // Function for get All Data
     // public function getAllProduct()
