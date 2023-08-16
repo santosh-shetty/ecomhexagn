@@ -12,7 +12,7 @@
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Add Product</h4>
+                            <h4 class="card-title">View Product</h4>
 
                             <p class="card-description">
                                 Product Detail
@@ -95,12 +95,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Status</label>
+                                        <label class="col-sm-3 col-form-label">Featured Products</label><!-- 0-active,1-inactive -->
 
                                         <div class="col-sm-4">
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
-                                                    <input style="margin-right: 10px;" type="radio" name="feature_product" value="1" <?= $product->status == 0 ? "checked" : "" ?>> Active
+                                                    <input style="margin-right: 10px;" type="radio" name="feature_product" value="0" <?= $product->feature_product == 0 ? "checked" : "" ?>> Active
                                                 </label>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
                                         <div class="col-sm-5">
                                             <div class="form-check mt-0">
                                                 <label class="col-form-label">
-                                                    <input style="margin-right: 10px;" type="radio" name="feature_product" value="0" <?= $product->status == 1 ? "checked" : "" ?>> In Active
+                                                    <input style="margin-right: 10px;" type="radio" name="feature_product" value="1" <?= $product->feature_product == 1 ? "checked" : "" ?>> In Active
                                                 </label>
                                             </div>
                                         </div>

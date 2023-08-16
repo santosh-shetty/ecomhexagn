@@ -114,14 +114,14 @@
                                             <div class="col-sm-4">
                                                 <div class="form-check mt-0">
                                                     <label class="col-form-label">
-                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="1"> Active
+                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="0"> Active
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
                                                 <div class="form-check mt-0">
                                                     <label class="col-form-label">
-                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="0"> In Active
+                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="1"> In Active
                                                     </label>
                                                 </div>
                                             </div>

@@ -12,28 +12,20 @@
 							<!-- Top Carasoul  -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="
-																									<?= base_url('assets/front/images/home1.jpg') ?>" class="d-block w-100" height="518"
-										alt="abc">
+									<img src="<?= base_url('assets/front/images/home1.jpg') ?>" class="d-block w-100" height="518" alt="abc">
 								</div>
 								<div class="carousel-item">
-									<img src="
-																										<?= base_url('assets/front/images/home2.jpg') ?>" class="d-block w-100" height="518"
-										alt="abc">
+									<img src="<?= base_url('assets/front/images/home2.jpg') ?>" class="d-block w-100" height="518" alt="abc">
 								</div>
 								<div class="carousel-item">
-									<img src="
-																											<?= base_url('assets/front/images/home3.jpg') ?>" class="d-block w-100" height="518"
-										alt="abc">
+									<img src="<?= base_url('assets/front/images/home3.jpg') ?>" class="d-block w-100" height="518" alt="abc">
 								</div>
 							</div>
-							<button class="carousel-control-prev" type="button"
-								data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Previous</span>
 							</button>
-							<button class="carousel-control-next" type="button"
-								data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Next</span>
 							</button>
@@ -138,7 +130,7 @@
 				<div class="tab-pane active" id="home">
 					<div class="prod_h2m row">
 						<?php $i = 0;
-						foreach ($products as $product):
+						foreach ($products as $product) :
 							if ($i == 4) {
 								break;
 							} ?>
@@ -148,8 +140,7 @@
 										<div class="grid clearfix">
 											<figure class="effect-jazz mb-0">
 												<a href="<?= base_url('/product/single_product/' . $product['product_id']) ?>">
-													<img src="<?= base_url('assets/images/upload/' . $product['product_image']) ?>"
-														class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
+													<img src="<?= base_url('assets/images/upload/' . $product['product_image']) ?>" class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
 												</a>
 											</figure>
 										</div>
@@ -187,7 +178,8 @@
 									</div>
 								</div>
 							</div>
-							<?php $i++; endforeach; ?>
+						<?php $i++;
+						endforeach; ?>
 					</div>
 					<!-- <div class="tab-pane" id="profile">
 					<div class="prod_h2m row">
