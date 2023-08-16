@@ -10,6 +10,7 @@
     <link href="<?= base_url('assets/front/assets/css/font-awesome.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/front/assets/css/global.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/front/assets/css/index.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/front/assets/css/cart.css') ?>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script src="<?= base_url('assets/front/assets/js/bootstrap.bundle.min.js') ?>">
     </script>
@@ -183,95 +184,21 @@
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user me-1 fs-2 align-middle me-1 col_oran"></i> </a>
                                 <ul class="dropdown-menu drop_cart" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <div class="drop_1i row">
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1il">
-                                                    <h5>2 ITEMS</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1il text-end">
-                                                    <h5>
-                                                        <a href="cart.html">VIEW CART</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="drop_1i1 row">
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1i1l">
-                                                    <h6 class="fw-bold">
-                                                        <a href="#">Nulla Quis</a>
-                                                        <br>
-                                                        <span class="fw-normal d-inline-block mt-1">1x - $89.00</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-4">
-                                                <div class="drop_1i1r">
-                                                    <a href="#">
-                                                        <img src="img/1.jpg" class="w-100" alt="abc">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-2">
-                                                <div class="drop_1i1l text-end">
-                                                    <h6>
-                                                        <span>
-                                                            <i class="fa fa-remove"></i>
-                                                        </span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="drop_1i1 row">
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1i1l">
-                                                    <h6 class="fw-bold">
-                                                        <a href="#">Eget Nulla</a>
-                                                        <br>
-                                                        <span class="fw-normal d-inline-block mt-1">1x - $49.00</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-4">
-                                                <div class="drop_1i1r">
-                                                    <a href="#">
-                                                        <img src="img/2.jpg" class="w-100" alt="abc">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2 col-2">
-                                                <div class="drop_1i1l text-end">
-                                                    <h6>
-                                                        <span>
-                                                            <i class="fa fa-remove"></i>
-                                                        </span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="drop_1i2 row">
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1il">
-                                                    <h5>TOTAL</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-6">
-                                                <div class="drop_1il text-end">
-                                                    <h5>$138.00</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="drop_1i3 text-center row">
-                                            <div class="col-md-12 col-12">
-                                                <h6 class="fw-normal">
-                                                    <a class="button d-block" href="checkout.html">CHECKOUT</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    <?php if (session()->has('customer_name')): ?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= base_url('customer/profile') ?>">
+                                                <i class="fa fa-caret-right me-1 col_oran"></i>My Profile</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= base_url('customer/logout') ?>">
+                                                <i class="fa fa-caret-right me-1 col_oran"></i>Log Out</a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= base_url('customer/login') ?>">
+                                                <i class="fa fa-caret-right me-1 col_oran"></i>Log In</a>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </li>
 

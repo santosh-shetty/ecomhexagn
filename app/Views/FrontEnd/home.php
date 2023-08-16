@@ -147,7 +147,8 @@
 									<div class="prod_h2i1i text-center clearfix">
 										<div class="grid clearfix">
 											<figure class="effect-jazz mb-0">
-												<a href="<?= base_url('/product/single_product/' . $product['product_id']) ?>">
+												<a
+													href="<?= base_url('/product/single_product/' . $product['product_id']) ?>">
 													<img src="<?= base_url('assets/images/upload/' . $product['product_image']) ?>"
 														class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
 												</a>
@@ -162,13 +163,21 @@
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
-									</span> -->
-										<h5 class="mt-2 col_oran">&#8377;<?= $product['product_price'] ?>
+										</span> -->
+										<h5 class="mt-2 col_oran">&#8377;
+											<?= $product['product_price'] ?>
 										</h5>
-										<h6 class="mb-0 mt-3 pb-3">
-											<a href="#" class="button_1 p-3 pt-2 pb-2">
-												<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-										</h6>
+										<form action="<?= base_url('/carts/add/' . $product['product_id']) ?>"
+											method="post">
+											<h6 class="mb-0 mt-3 pb-3">
+												 <input type="hidden" value="<?= $product['product_id'] ?>" name="product_id">
+												 <input type="text" value="<?php ?>" name="customer_id">
+												<button type="submit"
+													href="<?= base_url('/carts/add/' . $product['product_id']) ?>"
+													class="button_1 p-3 pt-2 pb-2 ">
+													<i class="fa fa-shopping-basket"></i> Add to Cart </button>
+											</h6>
+										</form>
 									</div>
 									<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
 										<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>

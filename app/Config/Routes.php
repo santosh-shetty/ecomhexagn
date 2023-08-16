@@ -33,12 +33,13 @@ $routes->set404Override();
 // ============Start Admin Routes============
 // $routes->get('/dashboard', 'Admin::dashboard');
 $routes->get('/dashboard', 'Admin::dashboard');
+$routes->get('/login', 'Admin::login');
 // $routes->get('/dashboard', 'Admin::dashboard', ['filter' => 'auth', 'filterGroup' => 'admin']);
 
 // Products routes
 $routes->get('/admin/product/all_products', 'Admin::all_products');
-$routes->post('/admin/product/check_add_product', 'Admin::check_add_product');  // verify before add product
-$routes->post('/admin/product/check_edit_product', 'Admin::check_edit_product');  // verify before edit/ update Category
+$routes->post('/admin/product/check_add_product', 'Admin::check_add_product'); // verify before add product
+$routes->post('/admin/product/check_edit_product', 'Admin::check_edit_product'); // verify before edit/ update Category
 $routes->get('/admin/product/add_product', 'Admin::add_product');
 $routes->get('/admin/product/delete_product/(:num)', 'Admin::delete_product/$1');
 $routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
@@ -46,10 +47,10 @@ $routes->get('/admin/product/edit_product/(:num)', 'Admin::edit_product/$1');
 // Categories Routes
 $routes->get('/admin/category/all_categories', 'Admin::all_categories');
 $routes->get('/admin/category/add_category', 'Admin::add_category');
-$routes->post('/admin/category/check_add_category', 'Admin::check_add_category');  // verify before add Category
+$routes->post('/admin/category/check_add_category', 'Admin::check_add_category'); // verify before add Category
 $routes->get('/admin/category/view_category/(:num)', 'Admin::view_category/$1');
 $routes->get('/admin/category/edit_category/(:num)', 'Admin::edit_category/$1');
-$routes->post('/admin/category/check_edit_category', 'Admin::check_edit_category');  // verify before edit/ update Category
+$routes->post('/admin/category/check_edit_category', 'Admin::check_edit_category'); // verify before edit/ update Category
 $routes->get('/admin/category/delete_category/(:num)', 'Admin::delete_category/$1');
 //Brand Routes
 $routes->get('/admin/brands/all_brands', 'Admin::all_brands');
@@ -67,7 +68,22 @@ $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 // $routes->get('/singleproduct', 'Home::singleproduct');
 // $routes->get('/allproducts', 'Home::allproducts');
 
+// Customer Login
+$routes->group('customer/auth', ['namespace' => '\App\Controllers\Customers'], function ($routes) {
+    // $routes->get('customer/auth/login', 'Auth::login');
+    // $routes->post('login', 'Auth::attemptLogin');
+    // $routes->get('logout', 'Auth::logout');
+});
+$routes->get('customer/login', 'Customer::login');
+$routes->post('customer/login', 'Customer::customerAuth');
+$routes->get('customer/logout', 'Customer::logout');
+$routes->get('/test', 'Customer::test',['filter' => 'customerAuth']);
+
+
 $routes->get('/', 'Home::home');
+// carts 
+$routes->get('/cart', 'CartsController::cart');
+$routes->get('/carts/add/(:num)', 'CartsController::add/$1');
 
 // ============End FrontEnd Routes============
 

@@ -12,6 +12,10 @@ class Admin extends BaseController
   {
     return view('admin/dashboard');
   }
+  public function login()
+  {
+    return view('admin/login');
+  }
 
   // ========== Start Products Controller Function =========//
 

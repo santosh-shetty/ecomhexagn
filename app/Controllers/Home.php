@@ -6,7 +6,12 @@ use App\Models\Categories;
 use App\Models\Products;
 
 class Home extends BaseController
-{
+{   public function login()
+    {
+        echo "test";
+        exit();
+        return view('customer/login');
+    }
     public function index(): string
     {
         return view('frontEnd/index');
