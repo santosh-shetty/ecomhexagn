@@ -62,6 +62,12 @@ $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
+$routes->get('/login', 'Home::register');
+// ============End FrontEnd Routes============
+
+
+
+// ============Start FrontEnd Routes============
 // $routes->get('/', 'Home::index');
 // $routes->get('/cart', 'Home::cart');
 // $routes->get('/singleproduct', 'Home::singleproduct');

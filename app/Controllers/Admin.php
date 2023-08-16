@@ -40,6 +40,7 @@ class Admin extends BaseController
       'category_id' => 'required',
       'brand_id' => 'required',
       'status' => 'required',
+      'feature_product'
     ];
 
     // Validate both the image and other fields
@@ -57,6 +58,7 @@ class Admin extends BaseController
         'brand_id' => $this->request->getVar('brand_id'),
         'product_image' => $img_name,
         'status' => $this->request->getVar('status'),
+        'feature_product' => $this->request->getVar('feature_product') 
       ];
 
       $productModel->insert($data);
