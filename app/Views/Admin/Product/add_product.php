@@ -8,11 +8,11 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <!-- Check if there are any validation errors -->
-            <?php if (session()->has('errors')): ?>
+            <?php if (session()->has('errors')) : ?>
                 <div class="alert alert-danger">
                     <ul>
                         <!-- Loop through each error message -->
-                        <?php foreach (session('errors') as $error): ?>
+                        <?php foreach (session('errors') as $error) : ?>
                             <li>
                                 <?= esc($error) ?>
                             </li>
@@ -20,8 +20,7 @@
                     </ul>
                 </div>
             <?php endif; ?>
-            <form class="form-sample" action="<?= base_url('admin/product/check_add_product') ?>" method="post"
-                enctype="multipart/form-data">
+            <form class="form-sample" action="<?= base_url('admin/product/check_add_product') ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-12 grid-margin">
                         <div class="card">
@@ -44,8 +43,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Price</label>
                                             <div class="col-sm-9">
-                                                <input type="number" placeholder="Product Price" class="form-control"
-                                                    name="product_price" />
+                                                <input type="number" placeholder="Product Price" class="form-control" name="product_price" />
                                             </div>
                                         </div>
                                     </div>
@@ -53,8 +51,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Quantity</label>
                                             <div class="col-sm-9">
-                                                <input type="number" placeholder="Product Quantity" class="form-control"
-                                                    name="quantity" />
+                                                <input type="number" placeholder="Product Quantity" class="form-control" name="quantity" />
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +62,7 @@
                                             <label class="col-sm-3 col-form-label">Category</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="category_id">
-                                                    <?php foreach ($categories as $category): ?>
+                                                    <?php foreach ($categories as $category) : ?>
                                                         <option value="<?= $category['category_id'] ?>"><?= $category['category_name'] ?>
                                                         </option>
                                                     <?php endforeach; ?>
@@ -80,8 +77,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-check mt-0">
                                                     <label class="col-form-label">
-                                                        <input style="margin-right: 10px;" type="radio" name="status"
-                                                            value="1"> Active
+                                                        <input style="margin-right: 10px;" type="radio" name="status" value="1"> Active
                                                     </label>
                                                 </div>
                                             </div>
@@ -89,8 +85,7 @@
                                             <div class="col-sm-5">
                                                 <div class="form-check mt-0">
                                                     <label class="col-form-label">
-                                                        <input style="margin-right: 10px;" type="radio" name="status"
-                                                            value="0"> In Active
+                                                        <input style="margin-right: 10px;" type="radio" name="status" value="0"> In Active
                                                     </label>
                                                 </div>
                                             </div>
@@ -104,7 +99,7 @@
                                             <label class="col-sm-3 col-form-label">Brand</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="brand_id">
-                                                    <?php foreach ($brands as $brand): ?>
+                                                    <?php foreach ($brands as $brand) : ?>
                                                         <option value="<?= $brand['brand_id'] ?>"><?= $brand['brand_name'] ?>
                                                         </option>
                                                     <?php endforeach; ?>
@@ -115,25 +110,21 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <!-- <label class="col-sm-3 col-form-label">Status</label> -->
-                                            <!-- <div class="col-sm-4">
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="membershipRadios"
-                                                        id="membershipRadios1" value="0" checked>
-                                                    Active
-                                                </label>
+                                            <label class="col-sm-3 col-form-label">Featured Products</label>
+                                            <div class="col-sm-4">
+                                                <div class="form-check mt-0">
+                                                    <label class="col-form-label">
+                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="0"> Active
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="col-sm-5">
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input" checked>
-                                                    Checked
-                                                </label>
+                                            <div class="col-sm-5">
+                                                <div class="form-check mt-0">
+                                                    <label class="col-form-label">
+                                                        <input style="margin-right: 10px;" type="radio" name="feature_product" value="1"> In Active
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -145,14 +136,11 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Product Image</label>
-                                    <input type="file" name="product_image" id="fileInput" class="file-upload-default"
-                                        onchange="updateFileName()">
+                                    <input type="file" name="product_image" id="fileInput" class="file-upload-default" onchange="updateFileName()">
                                     <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" id="fileInfo" disabled
-                                            placeholder="Upload Image">
+                                        <input type="text" class="form-control file-upload-info" id="fileInfo" disabled placeholder="Upload Image">
                                         <span class="input-group-append">
-                                            <button class="file-upload-browse btn btn-primary" type="button"
-                                                id="uploadButton">Upload</button>
+                                            <button class="file-upload-browse btn btn-primary" type="button" id="uploadButton">Upload</button>
                                         </span>
                                     </div>
                                 </div>
@@ -160,8 +148,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleTextarea1">Product Description</label>
-                                            <textarea class="form-control" id="exampleTextarea1" rows="4"
-                                                name="product_desc"></textarea>
+                                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="product_desc"></textarea>
                                             <script>
                                                 CKEDITOR.replace('product_desc');
                                             </script>
@@ -199,7 +186,7 @@
         }
     }
 
-    document.getElementById('uploadButton').addEventListener('click', function () {
+    document.getElementById('uploadButton').addEventListener('click', function() {
         document.getElementById('fileInput').click();
     });
 </script>

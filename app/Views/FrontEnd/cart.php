@@ -1,5 +1,9 @@
 <!-- Include Header -->
-<?php @include('includes/header.php') ?>
+<?php
+
+use App\Models\Products;
+
+@include('includes/header.php') ?>
 
 <section id="center" class="center_o pt-3 pb-3 bg_light1">
     <div class="container-xl">
@@ -30,34 +34,55 @@
                 <div class="cart_3l">
                     <h5>PRODUCT</h5>
                 </div>
-                <div class="cart_3l1 mt-3 row ms-0 me-0">
-                    <div class="col-md-3 ps-0 col-3">
-                        <div class="cart_3l1i">
-                            <a href="#"><img src="<?= base_url('assets/front/images/discount1.jpg') ?>" alt="abc"
-                                    class="w-100"></a>
+                <?php if (session()->has('success')): ?>
+                    <div class="alert alert-success">
+                        <?= session('success') ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (session()->has('error')): ?>
+                    <div class="alert alert-success">
+                        <?= session('error') ?>
+                    </div>
+                <?php endif; ?>
+                <?php foreach ($cartProducts as $cartProduct): ?>
+                    <div class="cart_3l1 mt-3 row ms-0 me-0">
+                        <div class="col-md-3 ps-0 col-3">
+                            <div class="cart_3l1i">
+                                <a href="#"><img
+                                        src="<?= base_url('assets/images/upload/' . $cartProduct->product_image) ?>"
+                                        alt="abc" class="w-100"></a>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-9">
+                            <div class="cart_3l1i1">
+                                <h6 class="fw-bold"><a href="#">
+                                        <?= $cartProduct->product_name ?>
+                                    </a>
+                                </h6>
+                                <!-- <h6 class="fw-normal font_12 mt-3">RED / XS</h6>    -->
+                                <h5 class="col_oran mt-3">&#8377;
+                                    <?= $cartProduct->product_price ?>
+                                </h5>
+                                <h6 class="font_12 mt-3 mb-3">Quantity</h6>
+                            </div>
+                            <div class="cart_3l1i2">
+                                <form method="post" action="<?= base_url('cart/update/' . $cartProduct->cart_id) ?>">
+                                    <input type="number" min="1" value="<?= $cartProduct->quantity ?>" class="form-control" placeholder="Qty" name="quantity">
+                                    <h6><a class="button_1"
+                                            href="<?= base_url('cart/remove/' . $cartProduct->cart_id) ?>">REMOVE</a></h6>
+                                    <h6><button class="button" type="submit"> UPDATE CART</button></h6>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-9 col-9">
-                        <div class="cart_3l1i1">
-                            <h6 class="fw-bold"><a href="#">Naminos elementum disus tincidunts cosmo de cosmopolis</a>
-                            </h6>
-                            <h6 class="fw-normal font_12 mt-3">RED / XS</h6>
-                            <h6 class="font_12 mt-3">Vendor</h6>
-                            <h5 class="col_oran mt-3">$175.00</h5>
-                            <h6 class="font_12 mt-3 mb-3">Quantity</h6>
-                        </div>
-                        <div class="cart_3l1i2">
-                            <input type="number" min="1" value="1" class="form-control" placeholder="Qty">
-                            <h6><a class="button_1" href="#">REMOVE</a></h6>
-                            <h6><a class="button" href="#">UPDATE CART</a></h6>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <div class="col-md-4">
                 <div class="cart_3r">
                     <h5 class="head_1">SUBTOTAL</h5>
-                    <h5 class="text-center col_oran mt-3">$1,347.00</h5>
+                    <h5 class="text-center col_oran mt-3"> &#8377;
+                        <?= number_format($totalPrice, 2) ?>
+                    </h5>
                     <hr>
                     <h6 class="font_13">Additional comments</h6>
                     <textarea class="form-control"></textarea>

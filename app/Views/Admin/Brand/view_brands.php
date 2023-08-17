@@ -58,7 +58,7 @@
             <div class="col-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                                 <label>Brand Image</label>
                                 <input type="file" name="brand_image" id="fileInput" class="file-upload-default"
                                     onchange="updateFileName()">
@@ -70,7 +70,7 @@
                                             id="uploadButton">Upload</button>
                                     </span>
                                 </div>
-                            </div> -->
+                            </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">

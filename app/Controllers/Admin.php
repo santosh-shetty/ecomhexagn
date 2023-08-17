@@ -44,6 +44,7 @@ class Admin extends BaseController
       'category_id' => 'required',
       'brand_id' => 'required',
       'status' => 'required',
+      'feature_product' => 'required'
     ];
 
     // Validate both the image and other fields
@@ -61,6 +62,7 @@ class Admin extends BaseController
         'brand_id' => $this->request->getVar('brand_id'),
         'product_image' => $img_name,
         'status' => $this->request->getVar('status'),
+        'feature_product' => $this->request->getVar('feature_product')
       ];
 
       $productModel->insert($data);
@@ -87,6 +89,7 @@ class Admin extends BaseController
       'category_id' => 'required',
       'brand_id' => 'required',
       'status' => 'required',
+      'feature_product' => 'required'
     ];
 
     // Validate  fields
@@ -103,6 +106,7 @@ class Admin extends BaseController
         'brand_id' => $this->request->getVar('brand_id'),
         'product_image' => $img_name,
         'status' => $this->request->getVar('status'),
+        'feature_product' => $this->request->getVar('feature_product')
       ];
 
       $id = $this->request->getVar('product_id');
@@ -181,6 +185,11 @@ class Admin extends BaseController
   {
     $categoryModel = new Categories();
     $Rules = [
+      'file' => [
+        'uploaded[product_image]',
+        'ext_in[product_image,jpg,jpeg,png,webp]',
+        'max_size[product_image,2048]',
+      ],
       'category_name' => 'required',
       'category_desc' => 'required',
       'status' => 'required',
@@ -189,6 +198,10 @@ class Admin extends BaseController
 
     // Validate fields
     if ($this->validate($Rules)) {
+      $img = $this->request->getFile('category_image');
+      $img_name = $img->getName();
+      $img->move(ROOTPATH . 'public/assets/images/upload/category', $img_name);
+      // echo $img_name;exit();
       $data = [
         'category_name' => $this->request->getVar('category_name'),
         'category_desc' => $this->request->getVar('category_desc'),
@@ -221,6 +234,11 @@ class Admin extends BaseController
   {
     $categoryModel = new Categories();
     $Rules = [
+      'file' => [
+        'uploaded[product_image]',
+        'ext_in[product_image,jpg,jpeg,png,webp]',
+        'max_size[product_image,2048]',
+      ],
       'category_name' => 'required',
       'category_desc' => 'required',
       'status' => 'required',
@@ -229,6 +247,9 @@ class Admin extends BaseController
 
     // Validate  fields
     if ($this->validate($Rules)) {
+      $img = $this->request->getFile('product_image');
+      $img_name = $img->getName();
+      $img->move(ROOTPATH . 'public/assets/images/upload/category', $img_name);
       $data = [
         'category_name' => $this->request->getVar('category_name'),
         'category_desc' => $this->request->getVar('category_desc'),
@@ -284,17 +305,28 @@ class Admin extends BaseController
   {
     $brandsModel = new Brands();
     $Rules = [
+      'file' => [
+        'uploaded[product_image]',
+        'ext_in[product_image,jpg,jpeg,png,webp]',
+        'max_size[product_image,2048]',
+      ],
       'brand_name' => 'required',
       'brand_desc' => 'required',
+      'brand_image' => 'required',
       // 'status' => 'required',
       // 'slug' => 'required',
     ];
 
     // Validate fields
     if ($this->validate($Rules)) {
+      $img = $this->request->getFile('brand_image');
+      $img_name = $img->getName();
+      $img->move(ROOTPATH . 'public/assets/images/upload/brand', $img_name);
+      // echo $img_name;exit();
       $data = [
         'brand_name' => $this->request->getVar('brand_name'),
         'brand_desc' => $this->request->getVar('brand_desc'),
+        'brand_image' => $this->request->getVar('brand_image'),
         // 'status' => $this->request->getVar('status'),
         // 'slug' => $this->request->getVar('slug'),
       ];
@@ -324,17 +356,27 @@ class Admin extends BaseController
   {
     $brandsModel = new Brands();
     $Rules = [
+      'file' => [
+        'uploaded[product_image]',
+        'ext_in[product_image,jpg,jpeg,png,webp]',
+        'max_size[product_image,2048]',
+      ],
       'brand_name' => 'required',
       'brand_desc' => 'required',
+      'brand_image' => 'required'
       // 'status' => 'required',
       // 'slug' => 'required',
     ];
 
     // Validate  fields
     if ($this->validate($Rules)) {
+      $img = $this->request->getFile('product_image');
+      $img_name = $img->getName();
+      $img->move(ROOTPATH . 'public/assets/images/upload/brand', $img_name);
       $data = [
         'brand_name' => $this->request->getVar('brand_name'),
         'brand_desc' => $this->request->getVar('brand_desc'),
+        'brand_image' => $this->request->getVar('brand_image'),
         // 'status' => $this->request->getVar('status'),
         // 'slug' => $this->request->getVar('slug'),
       ];
@@ -342,7 +384,7 @@ class Admin extends BaseController
 
       $brandsModel->update(['brand_id' => $id], $data);
       $successMessage = "Brand has been Updated successfully.";
-      return redirect()->to(base_url('/admin/brand/all_brands'))->with('success', $successMessage);;
+      return redirect()->to(base_url('/admin/brand/all_brands'))->with('success', $successMessage);
     } else {
       // Validation failed, redirect back with validation errors
       return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));

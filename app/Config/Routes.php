@@ -63,6 +63,12 @@ $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
+$routes->get('/login', 'Home::register');
+// ============End FrontEnd Routes============
+
+
+
+// ============Start FrontEnd Routes============
 // $routes->get('/', 'Home::index');
 // $routes->get('/cart', 'Home::cart');
 // $routes->get('/singleproduct', 'Home::singleproduct');
@@ -83,7 +89,9 @@ $routes->get('/test', 'Customer::test',['filter' => 'customerAuth']);
 $routes->get('/', 'Home::home');
 // carts 
 $routes->get('/cart', 'CartsController::cart');
-$routes->get('/carts/add/(:num)', 'CartsController::add/$1');
+$routes->post('/cart/add/(:num)', 'CartsController::add/$1');
+$routes->get('/cart/remove/(:num)', 'CartsController::remove/$1');
+$routes->post('/cart/update/(:num)', 'CartsController::update/$1');
 
 // ============End FrontEnd Routes============
 

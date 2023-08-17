@@ -167,15 +167,27 @@
 										<h5 class="mt-2 col_oran">&#8377;
 											<?= $product['product_price'] ?>
 										</h5>
-										<form action="<?= base_url('/carts/add/' . $product['product_id']) ?>"
+										<form action="<?= base_url('/cart/add/' . $product['product_id']) ?>"
 											method="post">
 											<h6 class="mb-0 mt-3 pb-3">
-												 <input type="hidden" value="<?= $product['product_id'] ?>" name="product_id">
-												 <input type="text" value="<?php ?>" name="customer_id">
-												<button type="submit"
-													href="<?= base_url('/carts/add/' . $product['product_id']) ?>"
-													class="button_1 p-3 pt-2 pb-2 ">
-													<i class="fa fa-shopping-basket"></i> Add to Cart </button>
+												<input type="hidden" value="<?= $product['product_id'] ?>"
+													name="product_id">
+												<input type="hidden" value="<?= $product['product_name'] ?>"
+													name="product_name">
+												<!-- Check if the customer is logged in -->
+												<?php if (session()->has('customer_id')): ?>
+													<input type="hidden" value="<?= session('customer_id') ?>"
+														name="customer_id">
+													<input type="hidden" value="<?= session('customer_name') ?>"
+														name="customer_name">
+													<button type="submit" class="button_1 p-3 pt-2 pb-2">
+														<i class="fa fa-shopping-basket"></i> Add to Cart
+													</button>
+												<?php else: ?>
+													<a href="<?= base_url('customer/login') ?>" class="button_1 p-3 pt-2 pb-2">
+														<i class="fa fa-sign-in"></i> Login to Add to Cart
+													</a>
+												<?php endif; ?>
 											</h6>
 										</form>
 									</div>

@@ -23,7 +23,7 @@
                 <div class="col-md-4">
                     <div class="header_top1l">
                         <h3 class="mb-0">
-                            <a class="col_dark" href="index.html">
+                            <a class="col_dark" href="<?= base_url() ?>">
                                 <i class="fa fa-shopping-cart col_oran fs-1 me-1 align-middle"></i> Ecom Hexagn <br>
                                 <span class="col_light">Shopping Here</span>
                             </a>
@@ -97,7 +97,7 @@
                                             <div class="col-md-6 col-6">
                                                 <div class="drop_1il text-end">
                                                     <h5>
-                                                        <a href="cart.html">VIEW CART</a>
+                                                        <a href="<?= base_url('/cart')?>">VIEW CART</a>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -211,7 +211,7 @@
     <section id="header" class="bg_dark">
         <nav class="navbar navbar-expand-md navbar-light pt-0 pb-0" id="navbar_sticky">
             <div class="container-xl">
-                <a class="navbar-brand text-white" href="index.html">
+                <a class="navbar-brand text-white" href="<?= base_url() ?>">
                     <i class="fa fa-shopping-cart col_oran fs-1 me-1 align-middle"></i> Ecom Hexagn </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
