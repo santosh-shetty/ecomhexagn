@@ -13,13 +13,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/maps/vertical-layout-light/style.css.map') ?>">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet"
-        href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/ti-icons/css/themify-icons.css') ?>">
     <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2/select2.min.css') ?>">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') ?>">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/style.css') ?>">
@@ -37,22 +35,36 @@
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
                                 <!-- <img src="../../images/logo.svg" alt="logo"> -->
-                                <h3 class="text-center"> <strong >Ecom Hexagn</strong></h3>
+                                <h3 class="text-center"> <strong>Ecom Hexagn</strong></h3>
                             </div>
+                            <?php if (session()->has('error')) : ?>
+                                <div class="alert alert-success">
+                                    <?= session('error') ?>
+                                </div>
+                            <?php endif; ?>
                             <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <h6 class="font-weight-light">Sign up to continue.</h6>
+                            <form class="pt-3" method="post" action="<?= base_url('customer/register_check'); ?>">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="customer_name" class="form-control form-control-lg" id="exampleInputName1" placeholder="Full Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                    <input type="customer_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="customer_password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="confirm_password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="Confirm Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="customer_address" class="form-control form-control-lg" id="exampleInputAddress1" placeholder="Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" name="customer_phone_no" class="form-control form-control-lg" id="exampleInputNumber1" placeholder="Phone Number">
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="../../index.html">SIGN IN</a>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
@@ -69,7 +81,7 @@
                                     </button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="<?= base_url('/customer/register');?>" class="text-primary">Create</a>
+                                    Already have an account? <a href="<?= base_url('customer/login'); ?>" class="text-primary">Login</a>
                                 </div>
                             </form>
                         </div>

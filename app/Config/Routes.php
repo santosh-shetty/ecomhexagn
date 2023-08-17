@@ -64,15 +64,6 @@ $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 
 // ============Start FrontEnd Routes============
 $routes->get('/login', 'Home::register');
-// ============End FrontEnd Routes============
-
-
-
-// ============Start FrontEnd Routes============
-// $routes->get('/', 'Home::index');
-// $routes->get('/cart', 'Home::cart');
-// $routes->get('/singleproduct', 'Home::singleproduct');
-// $routes->get('/allproducts', 'Home::allproducts');
 
 // Customer Login
 $routes->group('customer/auth', ['namespace' => '\App\Controllers\Customers'], function ($routes) {
@@ -80,10 +71,13 @@ $routes->group('customer/auth', ['namespace' => '\App\Controllers\Customers'], f
     // $routes->post('login', 'Auth::attemptLogin');
     // $routes->get('logout', 'Auth::logout');
 });
+
+$routes->get('customer/register', 'Customer::register');
+$routes->post('customer/register_check', 'Customer::register_check');
 $routes->get('customer/login', 'Customer::login');
 $routes->post('customer/login', 'Customer::customerAuth');
 $routes->get('customer/logout', 'Customer::logout');
-$routes->get('/test', 'Customer::test',['filter' => 'customerAuth']);
+$routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
 
 
 $routes->get('/', 'Home::home');
