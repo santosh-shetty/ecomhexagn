@@ -46,10 +46,10 @@
                             <h6 class="font-weight-light">Sign up to continue.</h6>
                             <form class="pt-3" method="post" action="<?= base_url('customer/register_check'); ?>">
                                 <div class="form-group">
-                                    <input type="customer_name" class="form-control form-control-lg" id="exampleInputName1" placeholder="Full Name">
+                                    <input type="name" name="customer_name" class="form-control form-control-lg" id="exampleInputName1" placeholder="Full Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="customer_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter Email">
+                                    <input type="email" name="customer_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter Email">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="customer_password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
