@@ -78,12 +78,8 @@ $routes->post('customer/login', 'Customer::customerAuth');
 $routes->get('customer/logout', 'Customer::logout');
 $routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
 
-$routes->get('/', 'Home::home');
-$routes->get('/allproducts', 'Home::allProducts');
-$routes->get('/product/single_product/(:num)', 'Customer::single_product/$1');
-$routes->get('/allproducts', 'Home::allProducts');
-$routes->get('/home/apply_filters', 'Home::filter_kids_products');
 
+$routes->get('/', 'Home::home');
 // carts 
 $routes->get('/cart', 'CartsController::cart');
 $routes->post('/cart/add/(:num)', 'CartsController::add/$1');
