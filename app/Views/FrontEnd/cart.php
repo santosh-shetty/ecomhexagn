@@ -67,7 +67,8 @@ use App\Models\Products;
                             </div>
                             <div class="cart_3l1i2">
                                 <form method="post" action="<?= base_url('cart/update/' . $cartProduct->cart_id) ?>">
-                                    <input type="number" min="1" value="<?= $cartProduct->quantity ?>" class="form-control" placeholder="Qty" name="quantity">
+                                    <input type="number" min="1" value="<?= $cartProduct->quantity ?>" class="form-control"
+                                        placeholder="Qty" name="quantity">
                                     <h6><a class="button_1"
                                             href="<?= base_url('cart/remove/' . $cartProduct->cart_id) ?>">REMOVE</a></h6>
                                     <h6><button class="button" type="submit"> UPDATE CART</button></h6>
@@ -86,7 +87,8 @@ use App\Models\Products;
                     <hr>
                     <h6 class="font_13">Additional comments</h6>
                     <textarea class="form-control"></textarea>
-                    <h6 class="text-center mt-3"><a class="button" href="checkout.html">PROCEED TO CHECKOUT</a></h6><br>
+                    <h6 class="text-center mt-3"><a class="button" href="<?= base_url('/checkout') ?>">PROCEED TO
+                            CHECKOUT</a></h6><br>
                     <!-- <h5>GET SHIPPING ESTIMATES</h5> -->
                     <!-- <hr> -->
                 </div>

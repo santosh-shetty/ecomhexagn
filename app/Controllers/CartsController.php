@@ -49,7 +49,7 @@ class CartsController extends BaseController
 
         return redirect()->to('/cart')->with('success', "Product added successfully");
     }
-    
+
     public function remove($id)
     {
         $cartModel = new Carts();
@@ -73,4 +73,9 @@ class CartsController extends BaseController
 
         return redirect()->to('/cart')->with('success', "Cart updated successfully");
     }
+    public function checkout()
+    {
+        return view('frontend/checkout');
+    }
+
 }

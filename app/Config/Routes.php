@@ -78,13 +78,18 @@ $routes->post('customer/login', 'Customer::customerAuth');
 $routes->get('customer/logout', 'Customer::logout');
 $routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
 
-
 $routes->get('/', 'Home::home');
+$routes->get('/allproducts', 'Home::allProducts');
+$routes->get('/product/single_product/(:num)', 'Customer::single_product/$1');
+$routes->get('/allproducts', 'Home::allProducts');
+$routes->get('/home/apply_filters', 'Home::filter_kids_products');
+
 // carts 
 $routes->get('/cart', 'CartsController::cart');
 $routes->post('/cart/add/(:num)', 'CartsController::add/$1');
 $routes->get('/cart/remove/(:num)', 'CartsController::remove/$1');
 $routes->post('/cart/update/(:num)', 'CartsController::update/$1');
+$routes->get('/checkout', 'CartsController::checkout');
 
 // ============End FrontEnd Routes============
 

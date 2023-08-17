@@ -4,15 +4,28 @@ namespace App\Controllers;
 
 use App\Models\CustomersModel;
 use App\Controllers\Services;
+use App\Models\Products;
 
 class Customer extends BaseController
 {
-    public function test()
-    {
-        echo "Test";
-        // return view('FrontEnd/Customer/login');
-    }
 
+    // test
+    public function single_product($id)
+    {
+        $productModel = new Products();
+        $data['product'] = $productModel->getProductById($id);
+        $relatedProducts = $productModel
+            ->where('category_id', $data['product']->category_id)
+            ->where('product_id !=', $id) // Exclude the current product
+            ->findAll();
+
+        $data['related_products'] = $relatedProducts;
+
+        // print_r($data);exit();
+        // $data['related_product'] = $productModel->where($id);
+        return view('frontend/single_product', $data);
+    }
+    // test
     public function register()
     {
         echo view('frontend/customer/register');
@@ -22,21 +35,21 @@ class Customer extends BaseController
     {
         $customerModel = new CustomersModel();
         $rules = [
-            'customer_name'          => 'required|min_length[2]|max_length[255]',
-            'customer_email'         => 'required|min_length[4]|max_length[255]|valid_email',
-            'customer_password'      => 'required|min_length[4]|max_length[255]',
-            'confirm_password'       => 'matches[customer_password]',
-            'customer_address'       => 'required|min_length[10]|max_length[255]',
-            'customer_phone_no'      => 'required|min_length[10]|max_length[255]'
+            'customer_name' => 'required|min_length[2]|max_length[255]',
+            'customer_email' => 'required|min_length[4]|max_length[255]|valid_email',
+            'customer_password' => 'required|min_length[4]|max_length[255]',
+            'confirm_password' => 'matches[customer_password]',
+            'customer_address' => 'required|min_length[10]|max_length[255]',
+            'customer_phone_no' => 'required|min_length[10]|max_length[255]'
         ];
 
         if ($this->validate($rules)) {
             $userModel = new CustomersModel();
             $data = [
-                'customer_name'     => $this->request->getVar('customer_name'),
+                'customer_name' => $this->request->getVar('customer_name'),
                 'customer_password' => password_hash($this->request->getVar('customer_password'), PASSWORD_DEFAULT),
-                'customer_email'    => $this->request->getVar('customer_email'),
-                'customer_address'  => $this->request->getVar('customer_address'),
+                'customer_email' => $this->request->getVar('customer_email'),
+                'customer_address' => $this->request->getVar('customer_address'),
                 'customer_phone_no' => $this->request->getVar('customer_phone_no'),
             ];
             $userModel->insert($data);
@@ -45,21 +58,6 @@ class Customer extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function login()
     {

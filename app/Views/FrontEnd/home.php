@@ -199,13 +199,13 @@
 											<i class="fa fa-heart-o"></i>
 										</span>
 									</div>
-									<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
+									<!-- <div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
 										<span class="d-inline-block bg_oran fs-5">
-											<a href="detail.html">
+											<a href="<?//= ?>">
 												<i class="fa fa-search text-white"></i>
 											</a>
 										</span>
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<?php $i++; endforeach; ?>

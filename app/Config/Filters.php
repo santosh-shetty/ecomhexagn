@@ -23,6 +23,7 @@ class Filters extends BaseConfig
         'invalidchars' => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'customerAuth' => \App\Filters\CustomerAuth::class,
+        'adminAuth' => \App\Filters\adminAuth::class,
     ];
 
     /**

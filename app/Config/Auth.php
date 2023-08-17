@@ -25,19 +25,23 @@ class Auth extends ShieldAuth
 
     public $authConfig = [
         'customer' => [
-            'driver'     => 'Eloquent',
-            'model'      => \App\Models\CustomersModel::class,
-            'fields'     => [
-                'username' => 'email', // Change this to your customer's email field
-                'password' => 'password', // Change this to your customer's password field
+            'driver' => 'Eloquent',
+            'model' => \App\Models\CustomersModel::class,
+            'fields' => [
+                'username' => 'email',
+                // Change this to your customer's email field
+                'password' => 'password',
+                // Change this to your customer's password field
             ],
         ],
         'admin' => [
-            'driver'     => 'Eloquent',
-            'model'      => \App\Models\AdminModel::class,
-            'fields'     => [
-                'username' => 'email', // Change this to your admin's email field
-                'password' => 'password', // Change this to your admin's password field
+            'driver' => 'Eloquent',
+            'model' => \App\Models\AdminModel::class,
+            'fields' => [
+                'username' => 'email',
+                // Change this to your admin's email field
+                'password' => 'password',
+                // Change this to your admin's password field
             ],
         ],
     ];
@@ -114,9 +118,9 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
-        'register' => '/dashboard',
-        'login' => '/dashboard',
-        'logout' => 'login',
+        'register' => 'admin/dashboard',
+        'login' => 'admin/dashboard',
+        'logout' => 'admin/login',
         'force_reset' => '/',
     ];
 

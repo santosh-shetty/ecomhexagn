@@ -12,10 +12,48 @@ class Admin extends BaseController
   {
     return view('admin/dashboard');
   }
-  public function login()
-  {
-    return view('admin/login');
-  }
+  // public function login()
+  // {
+  //   return view('admin/login');
+  // }
+
+  // public function adminAuth()
+  // {
+  //   $customerModel = new CustomersModel();
+  //   $Rules = [
+  //     'customer_email' => 'required',
+  //     'customer_password' => 'required',
+  //   ];
+
+  //   // Validate  fields
+  //   if ($this->validate($Rules)) {
+  //     $customer_email = $this->request->getVar('customer_email');
+  //     $customer_password = $this->request->getVar('customer_password');
+
+  //     $customer = $customerModel->where('customer_email', $customer_email)
+  //       ->first(); // Use 'first()' to retrieve a single record
+
+  //     // echo $customer_email;
+  //     // echo $customer_password;
+  //     // print_r($customer);
+  //     // exit();
+  //     if ($customer && password_verify($customer_password, $customer['customer_password'])) {
+  //       // Authentication successful, store user data in session
+  //       session()->set('customer_id', $customer['customer_id']);
+  //       session()->set('customer_name', $customer['customer_name']);
+
+  //       // Redirect to a protected page or perform any other action
+  //       return redirect()->to('/');
+  //     } else {
+  //       // Authentication failed, redirect back with an error message
+  //       return redirect()->back()->withInput()->with('error', 'Invalid email or password');
+  //     }
+  //   } else {
+  //     // Validation failed, redirect back with validation errors
+  //     return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+  //   }
+  // }
+
 
   // ========== Start Products Controller Function =========//
 
@@ -260,7 +298,8 @@ class Admin extends BaseController
 
       $categoryModel->update(['category_id' => $id], $data);
       $successMessage = "Category has been Updated successfully.";
-      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);;
+      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
+      ;
     } else {
       // Validation failed, redirect back with validation errors
       return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));
