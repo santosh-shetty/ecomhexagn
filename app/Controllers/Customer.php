@@ -39,18 +39,11 @@ class Customer extends BaseController
                 'customer_address'  => $this->request->getVar('customer_address'),
                 'customer_phone_no' => $this->request->getVar('customer_phone_no'),
             ];
-            // echo "Test";
-            // exit();
             $userModel->insert($data);
             return redirect()->to('customer/login');
         } else {
-            echo "Test 2";
-            exit();
-            //     $data['validation'] = $this->validator;
-            //     echo view('frontend/customer/register', $data);
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
-        // echo view('frontend/customer/register', $data);
     }
 
 

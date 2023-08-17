@@ -33,7 +33,7 @@ $routes->set404Override();
 // ============Start Admin Routes============
 // $routes->get('/dashboard', 'Admin::dashboard');
 $routes->get('/dashboard', 'Admin::dashboard');
-$routes->get('/login', 'Admin::login');
+$routes->get('admin/login', 'Admin::login');
 // $routes->get('/dashboard', 'Admin::dashboard', ['filter' => 'auth', 'filterGroup' => 'admin']);
 
 // Products routes
@@ -63,7 +63,6 @@ $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
-$routes->get('/login', 'Home::register');
 
 // Customer Login
 $routes->group('customer/auth', ['namespace' => '\App\Controllers\Customers'], function ($routes) {
