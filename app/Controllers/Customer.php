@@ -18,42 +18,73 @@ class Customer extends BaseController
         echo view('frontend/customer/register');
     }
 
+    // public function register_check()
+    // {
+    //     $customerModel = new CustomersModel();
+    //     $rules = [
+    //         'customer_name'          => 'required|min_length[2]|max_length[255]',
+    //         'customer_email'         => 'required|min_length[4]|max_length[255]|valid_email',
+    //         'customer_password'      => 'required|min_length[4]|max_length[255]',
+    //         'confirm_password'       => 'matches[customer_password]',
+    //         'customer_address'       => 'required|min_length[10]|max_length[255]',
+    //         'customer_phone_no'      => 'required|min_length[10]|max_length[255]'
+    //     ];
+
+    //     if ($this->validate($rules)) {
+    //         $userModel = new CustomersModel();
+    //         $data = [
+    //             'customer_name'     => $this->request->getVar('customer_name'),
+    //             'customer_password' => password_hash($this->request->getVar('customer_password'), PASSWORD_DEFAULT),
+    //             'customer_email'    => $this->request->getVar('customer_email'),
+    //             'customer_address'  => $this->request->getVar('customer_address'),
+    //             'customer_phone_no' => $this->request->getVar('customer_phone_no'),
+    //         ];
+    //         // echo "Test";
+    //         // exit();
+    //         $userModel->insert($data);
+    //         return redirect()->to('customer/login');
+    //     } else {
+    //         echo "Test 2";
+    //         exit();
+    //         //     $data['validation'] = $this->validator;
+    //         //     echo view('frontend/customer/register', $data);
+    //         return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    //     }
+    //     // echo view('frontend/customer/register', $data);
+    // }
+
     public function register_check()
     {
-        $customerModel = new CustomersModel();
+        helper('form'); // Load the form helper for CSRF protection and form generation
+    
         $rules = [
-            'customer_name'          => 'required|min_length[2]|max_length[255]',
-            'customer_email'         => 'required|min_length[4]|max_length[255]|valid_email',
-            'customer_password'      => 'required|min_length[4]|max_length[255]',
-            'confirm_password'       => 'matches[customer_password]',
-            'customer_address'       => 'required|min_length[10]|max_length[255]',
-            'customer_phone_no'      => 'required|min_length[10]|max_length[255]'
+            'customer_name'        => 'required|min_length[2]|max_length[255]',
+            'customer_email'       => 'required|min_length[4]|max_length[255]|valid_email',
+            'customer_password'    => 'required|min_length[4]|max_length[255]',
+            'confirm_password'     => 'matches[customer_password]',
+            'customer_address'     => 'required|min_length[10]|max_length[255]',
+            'customer_phone_no'    => 'required|min_length[10]|max_length[255]'
         ];
-
+    
         if ($this->validate($rules)) {
             $userModel = new CustomersModel();
             $data = [
-                'customer_name'     => $this->request->getVar('customer_name'),
+                'customer_name'     => $this->request->getPost('customer_name'),
                 'customer_password' => password_hash($this->request->getVar('customer_password'), PASSWORD_DEFAULT),
-                'customer_email'    => $this->request->getVar('customer_email'),
-                'customer_address'  => $this->request->getVar('customer_address'),
-                'customer_phone_no' => $this->request->getVar('customer_phone_no'),
+                'customer_email'    => $this->request->getPost('customer_email'),
+                'customer_address'  => $this->request->getPost('customer_address'),
+                'customer_phone_no' => $this->request->getPost('customer_phone_no'),
             ];
-            // echo "Test";
-            // exit();
+            
             $userModel->insert($data);
             return redirect()->to('customer/login');
         } else {
-            echo "Test 2";
-            exit();
-            //     $data['validation'] = $this->validator;
-            //     echo view('frontend/customer/register', $data);
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            // Load the view with validation errors
+            $data['validation'] = $this->validator;
+            echo view('frontend/customer/register', $data);
         }
-        // echo view('frontend/customer/register', $data);
     }
-
-
+    
 
 
 
