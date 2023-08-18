@@ -80,6 +80,8 @@ $routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
 
 
 $routes->get('/', 'Home::home');
+$routes->get('/allproducts', 'Home::allProducts');
+$routes->get('/home/apply_filters', 'Home::filter_kids_products');
 // carts 
 $routes->get('/cart', 'CartsController::cart');
 $routes->post('/cart/add/(:num)', 'CartsController::add/$1');

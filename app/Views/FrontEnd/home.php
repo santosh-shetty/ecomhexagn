@@ -184,414 +184,47 @@
 											<i class="fa fa-heart-o"></i>
 										</span>
 									</div>
-									<!-- <div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-										<span class="d-inline-block bg_oran fs-5">
-											<a href="<?//= ?>">
-												<i class="fa fa-search text-white"></i>
-											</a>
-										</span>
-									</div> -->
 								</div>
 							</div>
 						<?php $i++;
 						endforeach; ?>
-					</div>
-					<!-- <div class="tab-pane" id="profile">
-					<div class="prod_h2m row">
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/13.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Sed cursus ante</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$400.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/14.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Integer nec odio</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$300.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/15.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Nulla quis sem </a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$230.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/16.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Lorem ipsum dolor</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$460.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane" id="settings">
-					<div class="prod_h2m row">
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/17.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Sed cursus ante</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$400.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/18.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Integer nec odio</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$300.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/19.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Nulla quis sem </a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$230.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="prod_h2i1 clearfix position-relative">
-								<div class="prod_h2i1i text-center clearfix">
-									<div class="grid clearfix">
-										<figure class="effect-jazz mb-0">
-											<a href="detail.html">
-												<img src="img/20.jpg" class="w-100" alt="abc">
-											</a>
-										</figure>
-									</div>
-									<h6 class="text-capitalize mt-3">
-										<a href="detail.html">Lorem ipsum dolor</a>
-									</h6>
-									<span class="col_yell">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-									</span>
-									<h5 class="mt-2 col_oran">$460.00</h5>
-									<h6 class="mb-0 mt-3 pb-3">
-										<a href="detail.html" class="button_1 p-3 pt-2 pb-2">
-											<i class="fa fa-shopping-basket"></i> Add to Cart </a>
-									</h6>
-								</div>
-								<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-									<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
-								</div>
-								<div class="prod_h2i1i2 position-absolute clearfix">
-									<span class="d-inline-block bg-white fs-5">
-										<i class="fa fa-heart-o"></i>
-									</span>
-								</div>
-								<div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
-									<span class="d-inline-block bg_oran fs-5">
-										<a href="detail.html">
-											<i class="fa fa-search text-white"></i>
-										</a>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-				</div>
-			</div>
-		</div>
-</section>
-<section id="offer" class="pt-3 pb-3">
-	<div class="container-xl">
-		<div class="row offer_1">
-			<div class="col-md-4">
-				<div class="offer_1i">
-					<div class="grid clearfix">
-						<figure class="effect-jazz mb-0">
-							<a href="#">
-								<img src="<?= base_url('assets/front/images/discount3.jpg') ?>" class="w-100" alt="abc">
-							</a>
-						</figure>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="offer_1i">
-					<div class="grid clearfix">
-						<figure class="effect-jazz mb-0">
-							<a href="#">
-								<img src="<?= base_url('assets/front/images/discount2.jpg') ?>" class="w-100" alt="abc">
-							</a>
-						</figure>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="offer_1i">
-					<div class="grid clearfix">
-						<figure class="effect-jazz mb-0">
-							<a href="#">
-								<img src="<?= base_url('assets/front/images/discount1.jpg') ?>" class="w-100" alt="abc">
-							</a>
-						</figure>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<section id="collection" class="pt-2 pb-3">
+<section id="offer" class="pt-3 pb-3">
+	<div class="container-xl">
+		<div class="row prod_h1">
+			<div class="col-md-12 mb-3">
+				<div class="prod_h1l">
+					<h5 class="mb-0">FEATURED CATEGORIES</h5>
+				</div>
+			</div>
+		</div>
+		<div class="row offer_1">
+			<?php $limit = 1; ?>
+			<?php foreach ($categories as $category) : ?>
+				<?php if ($limit < 10) { ?>
+					<div class="col-md-4">
+						<div class="offer_1i">
+							<div class="grid clearfix">
+								<figure class="effect-jazz mb-0">
+									<a href="#">
+										<img src="<?= base_url('assets/images/upload/category/' . $category['category_image']); ?>" style=" object-fit: cover; height:250px;">
+									</a>
+								</figure>
+							</div>
+						</div>
+					</div>
+				<?php }
+				$limit++; ?>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+<section id=" collection" class="pt-2 pb-3">
 	<div class="container-xl">
 		<div class="row collection_1">
 			<div class="col-md-12">

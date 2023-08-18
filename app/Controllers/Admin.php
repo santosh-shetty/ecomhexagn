@@ -238,8 +238,7 @@ class Admin extends BaseController
     if ($this->validate($Rules)) {
       $img = $this->request->getFile('category_image');
       $img_name = $img->getName();
-      $img->move(ROOTPATH . 'public/assets/images/upload/category', $img_name);
-      // echo $img_name;exit();
+      $img->move(ROOTPATH . 'public/assets/images/upload/category/', $img_name);
       $data = [
         'category_name' => $this->request->getVar('category_name'),
         'category_desc' => $this->request->getVar('category_desc'),
@@ -298,8 +297,7 @@ class Admin extends BaseController
 
       $categoryModel->update(['category_id' => $id], $data);
       $successMessage = "Category has been Updated successfully.";
-      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
-      ;
+      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);;
     } else {
       // Validation failed, redirect back with validation errors
       return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));
