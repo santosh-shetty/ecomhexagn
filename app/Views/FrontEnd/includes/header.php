@@ -72,20 +72,13 @@
                 <option>Camera</option>
                 <option>Health & Beauty</option>
               </select> -->
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Product name here...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary bg_oran" type="button"> Search </button>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="header_top1r pull-right">
                         <ul class="mb-0">
                             <li class="nav-item dropdown d-table-cell pe-4">
-                                <a class="dropdown-toggle lang_tab font_12 col_dark" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="dropdown-toggle lang_tab font_12 col_dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-shopping-basket me-1 fs-2 align-middle me-1 col_oran"></i> </a>
                                 <ul class="dropdown-menu drop_cart" aria-labelledby="navbarDropdown">
                                     <li>
@@ -98,7 +91,7 @@
                                             <div class="col-md-6 col-6">
                                                 <div class="drop_1il text-end">
                                                     <h5>
-                                                        <a href="<?= base_url('/cart')?>">VIEW CART</a>
+                                                        <a href="<?= base_url('/cart') ?>">VIEW CART</a>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -181,11 +174,10 @@
                             </li>
 
                             <li class="nav-item dropdown d-table-cell">
-                                <a class="dropdown-toggle lang_tab font_12 col_dark" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="dropdown-toggle lang_tab font_12 col_dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user me-1 fs-2 align-middle me-1 col_oran"></i> </a>
                                 <ul class="dropdown-menu drop_cart" aria-labelledby="navbarDropdown">
-                                    <?php if (session()->has('customer_name')): ?>
+                                    <?php if (session()->has('customer_name')) : ?>
                                         <li>
                                             <a class="dropdown-item" href="<?= base_url('customer/profile') ?>">
                                                 <i class="fa fa-caret-right me-1 col_oran"></i>My Profile</a>
@@ -194,7 +186,7 @@
                                             <a class="dropdown-item" href="<?= base_url('customer/logout') ?>">
                                                 <i class="fa fa-caret-right me-1 col_oran"></i>Log Out</a>
                                         </li>
-                                    <?php else: ?>
+                                    <?php else : ?>
                                         <li>
                                             <a class="dropdown-item" href="<?= base_url('customer/login') ?>">
                                                 <i class="fa fa-caret-right me-1 col_oran"></i>Log In</a>
@@ -214,16 +206,13 @@
             <div class="container-xl">
                 <a class="navbar-brand text-white" href="<?= base_url() ?>">
                     <i class="fa fa-shopping-cart col_oran fs-1 me-1 align-middle"></i> Ecom Hexagn </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle act_cat nav_hide" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle act_cat nav_hide" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-navicon me-1"></i> ALL CATEGORIES </a>
                             <ul class="dropdown-menu drop_cat" aria-labelledby="navbarDropdown">
                                 <li>
@@ -276,8 +265,7 @@
                             <a class="nav-link active" aria-current="page" href="<?= base_url() ?>">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false"> Product </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Product </a>
                             <ul class="dropdown-menu drop_2 drop_cat" aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item" href="<?= base_url('/allproducts') ?>">
