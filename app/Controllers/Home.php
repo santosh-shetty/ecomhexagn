@@ -7,13 +7,15 @@ use App\Models\Products;
 use App\Models\Brands;
 
 class Home extends BaseController
-
 {
     public function home()
     {
         $productModel = new Products();
         $categoryModel = new Categories();
-        $data['products'] = $productModel->where('feature_product', 1)->find();
+        // $data['products'] = $productModel->where('feature_product', 1)->find();
+        $data['products'] = $productModel->getFeatureProduct();
+        // print_r($data);exit();
+        
         $data['categories'] = $categoryModel->findAll();
         return view('frontEnd/home', $data);
     }
@@ -40,5 +42,20 @@ class Home extends BaseController
         }
 
         return view('filtered_products', $data);
+    }
+    public function single_product($id)
+    {
+        $productModel = new Products();
+        $data['product'] = $productModel->getProductById($id);
+        $relatedProducts = $productModel
+            ->where('category_id', $data['product']->category_id)
+            ->where('product_id !=', $id) // Exclude the current product
+            ->findAll();
+
+        $data['related_products'] = $relatedProducts;
+
+        // print_r($data);exit();
+        // $data['related_product'] = $productModel->where($id);
+        return view('frontend/single_product', $data);
     }
 }

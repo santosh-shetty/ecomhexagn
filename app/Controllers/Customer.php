@@ -9,38 +9,21 @@ use App\Models\Products;
 class Customer extends BaseController
 {
 
-    // test
-    public function single_product($id)
-    {
-        $productModel = new Products();
-        $data['product'] = $productModel->getProductById($id);
-        $relatedProducts = $productModel
-            ->where('category_id', $data['product']->category_id)
-            ->where('product_id !=', $id) // Exclude the current product
-            ->findAll();
-
-        $data['related_products'] = $relatedProducts;
-
-        // print_r($data);exit();
-        // $data['related_product'] = $productModel->where($id);
-        return view('frontend/single_product', $data);
-    }
-    // test
     public function register()
     {
-        echo view('frontend/customer/register');
+        return view('frontend/customer/register');
     }
 
     public function register_check()
     {
         $customerModel = new CustomersModel();
         $rules = [
-            'customer_name' => 'required|min_length[2]|max_length[255]',
-            'customer_email' => 'required|min_length[4]|max_length[255]|valid_email',
-            'customer_password' => 'required|min_length[4]|max_length[255]',
+            'customer_name' => 'required',
+            'customer_email' => 'required',
+            'customer_password' => 'required',
             'confirm_password' => 'matches[customer_password]',
-            'customer_address' => 'required|min_length[10]|max_length[255]',
-            'customer_phone_no' => 'required|min_length[10]|max_length[255]'
+            'customer_address' => 'required',
+            'customer_phone_no' => 'required'
         ];
 
         if ($this->validate($rules)) {
@@ -52,9 +35,11 @@ class Customer extends BaseController
                 'customer_address' => $this->request->getVar('customer_address'),
                 'customer_phone_no' => $this->request->getVar('customer_phone_no'),
             ];
+            // print_r($data);exit();
             $userModel->insert($data);
             return redirect()->to('customer/login');
         } else {
+            // echo "Tes";exit();
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
     }
@@ -101,14 +86,14 @@ class Customer extends BaseController
     }
 
     public function logout()
-    { {
-            // Destroy customer session
-            session()->remove('customer_id');
-            session()->remove('customer_name');
+    {
+        // Destroy customer session
+        session()->remove('customer_id');
+        session()->remove('customer_name');
 
-            // Redirect to the login page or any desired page
-            return redirect()->to(base_url('customer/login'))->with('success', 'Log Out Successfully');
-        }
+        // Redirect to the login page or any desired page
+        return redirect()->to(base_url('customer/login'))->with('success', 'Log Out Successfully');
+
     }
 
 

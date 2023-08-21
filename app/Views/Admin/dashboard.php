@@ -3,28 +3,6 @@
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
   <!-- partial:partials/_settings-panel.html -->
-  <div class="theme-setting-wrapper">
-    <div id="settings-trigger"><i class="ti-settings"></i></div>
-    <div id="theme-settings" class="settings-panel">
-      <i class="settings-close ti-close"></i>
-      <p class="settings-heading">SIDEBAR SKINS</p>
-      <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-        <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-      </div>
-      <div class="sidebar-bg-options" id="sidebar-dark-theme">
-        <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-      </div>
-      <p class="settings-heading mt-2">HEADER SKINS</p>
-      <div class="color-tiles mx-0 px-4">
-        <div class="tiles success"></div>
-        <div class="tiles warning"></div>
-        <div class="tiles danger"></div>
-        <div class="tiles info"></div>
-        <div class="tiles dark"></div>
-        <div class="tiles default"></div>
-      </div>
-    </div>
-  </div>
   <div id="right-sidebar" class="settings-panel">
     <i class="settings-close ti-close"></i>
     <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
@@ -189,7 +167,7 @@
         <div class="col-md-12 grid-margin">
           <div class="row">
             <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-              <h3 class="font-weight-bold">Welcome Aamir</h3>
+              <h3 class="font-weight-bold">Welcome <?php echo session()->get('admin_name')?></h3>
               <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
                   class="text-primary">3 unread alerts!</span></h6>
             </div>

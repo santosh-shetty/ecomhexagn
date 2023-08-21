@@ -12,26 +12,34 @@
 							<!-- Top Carasoul  -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="<?= base_url('assets/front/images/home1.jpg') ?>" class="d-block w-100" height="518" alt="abc">
+									<img src="<?= base_url('assets/front/images/home1.jpg') ?>" class="d-block w-100"
+										height="518" alt="abc">
 								</div>
 								<div class="carousel-item">
-									<img src="<?= base_url('assets/front/images/home2.jpg') ?>" class="d-block w-100" height="518" alt="abc">
+									<img src="<?= base_url('assets/front/images/home2.jpg') ?>" class="d-block w-100"
+										height="518" alt="abc">
 								</div>
 								<div class="carousel-item">
-									<img src="<?= base_url('assets/front/images/home3.jpg') ?>" class="d-block w-100" height="518" alt="abc">
+									<img src="<?= base_url('assets/front/images/home3.jpg') ?>" class="d-block w-100"
+										height="518" alt="abc">
 								</div>
 							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Previous</span>
 							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Next</span>
 							</button>
 						</div>
 					</div>
 				</div>
+				<form action="<?= base_url('generate-description/buggy t-shirt') ?>" method="post">
+					<button type="submit" class="button ">Click</button>
+				</form>
 				<div class="col-md-3 ps-0">
 					<div class="center_h2r">
 						<div class="center_h2ri mt-0 clearfix">
@@ -130,7 +138,7 @@
 				<div class="tab-pane active" id="home">
 					<div class="prod_h2m row">
 						<?php $i = 0;
-						foreach ($products as $product) :
+						foreach ($products as $product):
 							if ($i == 4) {
 								break;
 							} ?>
@@ -139,13 +147,15 @@
 									<div class="prod_h2i1i text-center clearfix">
 										<div class="grid clearfix">
 											<figure class="effect-jazz mb-0">
-												<a href="<?= base_url('/product/single_product/' . $product['product_id']) ?>">
-													<img src="<?= base_url('assets/images/upload/' . $product['product_image']) ?>" class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
+												<a
+													href="<?= base_url('/product/single_product/' . $product->product_id) ?>">
+													<img src="<?= base_url('assets/images/upload/' . $product->product_image) ?>"
+														class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
 												</a>
 											</figure>
 										</div>
 										<h6 class="text-capitalize mt-3">
-											<a href="<?= base_url('/product/single_product/' . $product['product_id']) ?>"><?= $product['product_name'] ?></a>
+											<a href="<?= base_url('/product/single_product/' . $product->product_id) ?>"><?= $product->product_name ?></a>
 										</h6>
 										<!-- <span class="col_yell">
 										<i class="fa fa-star"></i>
@@ -155,20 +165,23 @@
 										<i class="fa fa-star"></i>
 										</span> -->
 										<h5 class="mt-2 col_oran">&#8377;
-											<?= $product['product_price'] ?>
+											<?= $product->product_price ?>
 										</h5>
-										<form action="<?= base_url('/cart/add/' . $product['product_id']) ?>" method="post">
+										<form action="<?= base_url('/cart/add/' . $product->product_id) ?>" method="post">
 											<h6 class="mb-0 mt-3 pb-3">
-												<input type="hidden" value="<?= $product['product_id'] ?>" name="product_id">
-												<input type="hidden" value="<?= $product['product_name'] ?>" name="product_name">
+												<input type="hidden" value="<?= $product->product_id ?>" name="product_id">
+												<input type="hidden" value="<?= $product->product_name ?>"
+													name="product_name">
 												<!-- Check if the customer is logged in -->
-												<?php if (session()->has('customer_id')) : ?>
-													<input type="hidden" value="<?= session('customer_id') ?>" name="customer_id">
-													<input type="hidden" value="<?= session('customer_name') ?>" name="customer_name">
+												<?php if (session()->has('customer_id')): ?>
+													<input type="hidden" value="<?= session('customer_id') ?>"
+														name="customer_id">
+													<input type="hidden" value="<?= session('customer_name') ?>"
+														name="customer_name">
 													<button type="submit" class="button_1 p-3 pt-2 pb-2">
 														<i class="fa fa-shopping-basket"></i> Add to Cart
 													</button>
-												<?php else : ?>
+												<?php else: ?>
 													<a href="<?= base_url('customer/login') ?>" class="button_1 p-3 pt-2 pb-2">
 														<i class="fa fa-sign-in"></i> Login to Add to Cart
 													</a>
@@ -177,23 +190,25 @@
 										</form>
 									</div>
 									<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
-										<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">NEW PRODUCT</h6>
+										<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">
+											<?= $product->category_name ?>
+										</h6>
 									</div>
-									<div class="prod_h2i1i2 position-absolute clearfix">
+									<!-- <div class="prod_h2i1i2 position-absolute clearfix">
 										<span class="d-inline-block bg-white fs-5">
 											<i class="fa fa-heart-o"></i>
 										</span>
-									</div>
+									</div> -->
 									<!-- <div class="prod_h2i1i3 clearfix position-absolute w-100 text-center">
 										<span class="d-inline-block bg_oran fs-5">
-											<a href="<?//= ?>">
+											<a href="<? //= ?>">
 												<i class="fa fa-search text-white"></i>
 											</a>
 										</span>
 									</div> -->
 								</div>
 							</div>
-						<?php $i++;
+							<?php $i++;
 						endforeach; ?>
 					</div>
 					<!-- <div class="tab-pane" id="profile">

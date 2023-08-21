@@ -13,13 +13,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/maps/vertical-layout-light/style.css.map') ?>">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet"
-        href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/ti-icons/css/themify-icons.css') ?>">
     <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2/select2.min.css') ?>">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') ?>">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/style.css') ?>">
@@ -39,32 +37,28 @@
                                 <!-- <img src="../../images/logo.svg" alt="logo"> -->
                                 <h3 class="text-center"> <strong>Ecom Hexagn</strong></h3>
                             </div>
+                            <?php if (session()->has('error')) : ?>
+                                <div class="alert alert-success">
+                                    <?= session('error') ?>
+                                </div>
+                            <?php endif; ?>
                             <h4>Hello! let's get started</h4>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3" action="<?= base_url('admin/adminAuth') ?>" method="post">
-                                <?php if (session()->has('success')): ?>
-                                    <div class="alert alert-success">
-                                        <?= session('success') ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->has('error')): ?>
-                                    <div class="alert alert-danger">
-                                        <?= session('error') ?>
-                                    </div>
-                                <?php endif; ?>
-
+                            <h6 class="font-weight-light">Sign up to continue.</h6>
+                            <form class="pt-3" method="post" action="<?= base_url('admin/register_check'); ?>">
                                 <div class="form-group">
-                                    <input type="email" name="admin_email" class="form-control form-control-lg"
-                                        id="exampleInputEmail1" placeholder="Username">
+                                    <input type="name" name="admin_name" class="form-control form-control-lg" id="exampleInputName1" placeholder="Full Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="admin_password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                    <input type="email" name="admin_email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="admin_password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="confirm_password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="Confirm Password">
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit"
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
-                                        IN</button>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">CREATE NEW ACCOUNT</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
@@ -81,8 +75,7 @@
                                     </button>
                                 </div> -->
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="<?= base_url('/admin/register'); ?>"
-                                        class="text-primary">Create</a>
+                                    Already have an account? <a href="<?= base_url('admin/login'); ?>" class="text-primary">Login</a>
                                 </div>
                             </form>
                         </div>

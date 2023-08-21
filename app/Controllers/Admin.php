@@ -2,59 +2,197 @@
 
 namespace App\Controllers;
 
+use App\Models\adminModel;
 use App\Models\Categories;
 use App\Models\Brands;
 use App\Models\Products;
+use CodeIgniter\RESTful\Controller;
+use CodeIgniter\API\Response;
 
 class Admin extends BaseController
 {
+  public function generateDescription($productName)
+  {
+    $description = $this->callTuringAPI($productName);
+
+    if ($description) {
+      return $this->respond($description);
+    } else {
+      return $this->fail('Unable to generate product description');
+    }
+  }
+
+  private function callTuringAPI($productName)
+  {
+    $apiKey = 'YOUR_API_KEY';
+    $endpoint = 'https://api.turing.com/v2/engines/text-davinci-002/generate';
+
+    $data = [
+      'prompt' => "Generate a description for a product named '$productName'",
+      'max_tokens' => 50, // Adjust the number of tokens as needed
+    ];
+
+    $headers = [
+      'Content-Type: application/json',
+      'Authorization: Bearer ' . $apiKey,
+    ];
+
+    $curl = curl_init($endpoint);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+
+    $responseBody = json_decode($response, true);
+
+    if (isset($responseBody['generated'])) {
+      return $responseBody['generated'];
+    } else {
+      return null;
+    }
+  }
+  // public function generateDescription($productName)
+  // {
+  //   $apiKey = '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';
+  //   $endpoint = 'https://api.openai.azure.com/v1/engines/gpt-3/completions';
+
+  //   $data = [
+  //     'prompt' => "Generate a description for a product named '$productName'",
+  //     'max_tokens' => 50, // Adjust the number of tokens as needed
+  //   ];
+
+  //   $headers = [
+  //     'Content-Type: application/json',
+  //     'Authorization: Bearer ' . $apiKey,
+  //   ];
+  //   // Initialize cURL session
+  //   $curl = curl_init($endpoint);
+  //   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+  //   curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+  //   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  //   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+  //   // Execute cURL request
+  //   $response = curl_exec($curl);
+
+  //   // Close cURL session
+  //   curl_close($curl);
+
+  //   // Process the response
+  //   $responseBody = json_decode($response, true);
+  //   print_r($responseBody);
+  //   exit();
+
+  //   // Check if "choices" key exists in the response
+  //   if (isset($responseBody['choices'][0]['text'])) {
+  //     $description = $responseBody['choices'][0]['text'];
+  //   } else {
+  //     $description = 'Description not available';
+  //   }
+
+  //   print_r($description);
+  //   exit();
+  //   // return $description;
+  // }
+
+  public function login()
+  {
+
+    // $auth = service('auth');
+    // $auth->logout();
+    // return redirect()->to(base_url('dashboard'));
+    return view('admin/login');
+  }
+
+  public function adminAuth()
+  {
+    $adminModel = new adminModel();
+    $Rules = [
+      'admin_email' => 'required',
+      'admin_password' => 'required',
+    ];
+
+    // Validate  fields
+    if ($this->validate($Rules)) {
+      $admin_email = $this->request->getVar('admin_email');
+      $admin_password = $this->request->getVar('admin_password');
+
+      $admin = $adminModel->where('admin_email', $admin_email)
+        ->first(); // Use 'first()' to retrieve a single record
+
+      // echo $admin_password;
+      // echo $admin['admin_password'];
+      // print_r($admin);
+      // exit();
+      if ($admin && password_verify($admin_password, $admin['admin_password'])) {
+        // Authentication successful, store admin data in session
+        $adminData = [
+          'admin_id' => $admin['admin_id'],
+          'admin_logged_in' => true,
+          'admin_name' => $admin['admin_name'],
+        ];
+
+        session()->set($adminData);
+        // Redirect to a protected page or perform any other action
+        return redirect()->to('admin/dashboard');
+      } else {
+
+        // Authentication failed, redirect back with an error message
+        return redirect()->back()->withInput()->with('error', 'Invalid email or password');
+      }
+    } else {
+      // Validation failed, redirect back with validation errors
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+  }
+  public function adminLogout()
+  {
+    // Clear the admin session data
+    session()->remove('admin_id');
+    session()->remove('admin_logged_in');
+    session()->remove('admin_name');
+
+    // Redirect to the login page or any other appropriate page
+    return redirect()->to('/admin/login');
+  }
+  public function register()
+  {
+    return view('admin/register');
+  }
+
+  public function register_check()
+  {
+    $adminModel = new adminModel();
+    $rules = [
+      'admin_name' => 'required',
+      'admin_email' => 'required',
+      'admin_password' => 'required',
+      'confirm_password' => 'matches[admin_password]',
+    ];
+
+    if ($this->validate($rules)) {
+      $adminModel = new adminModel();
+      $data = [
+        'admin_name' => $this->request->getVar('admin_name'),
+        'admin_password' => password_hash($this->request->getVar('admin_password'), PASSWORD_DEFAULT),
+        'admin_email' => $this->request->getVar('admin_email'),
+      ];
+      // print_r($data);exit();
+      $adminModel->insert($data);
+      return redirect()->to('admin/dashboard');
+    } else {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+  }
+
+
   public function dashboard()
   {
     return view('admin/dashboard');
   }
-  // public function login()
-  // {
-  //   return view('admin/login');
-  // }
-
-  // public function adminAuth()
-  // {
-  //   $customerModel = new CustomersModel();
-  //   $Rules = [
-  //     'customer_email' => 'required',
-  //     'customer_password' => 'required',
-  //   ];
-
-  //   // Validate  fields
-  //   if ($this->validate($Rules)) {
-  //     $customer_email = $this->request->getVar('customer_email');
-  //     $customer_password = $this->request->getVar('customer_password');
-
-  //     $customer = $customerModel->where('customer_email', $customer_email)
-  //       ->first(); // Use 'first()' to retrieve a single record
-
-  //     // echo $customer_email;
-  //     // echo $customer_password;
-  //     // print_r($customer);
-  //     // exit();
-  //     if ($customer && password_verify($customer_password, $customer['customer_password'])) {
-  //       // Authentication successful, store user data in session
-  //       session()->set('customer_id', $customer['customer_id']);
-  //       session()->set('customer_name', $customer['customer_name']);
-
-  //       // Redirect to a protected page or perform any other action
-  //       return redirect()->to('/');
-  //     } else {
-  //       // Authentication failed, redirect back with an error message
-  //       return redirect()->back()->withInput()->with('error', 'Invalid email or password');
-  //     }
-  //   } else {
-  //     // Validation failed, redirect back with validation errors
-  //     return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-  //   }
-  // }
-
-
   // ========== Start Products Controller Function =========//
 
   public function all_products()
@@ -189,6 +327,8 @@ class Admin extends BaseController
     // print_r($data);exit();
     return view('admin/product/view_product', $data);
   }
+
+  //
 
   public function edit_product($id)
   {

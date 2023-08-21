@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Ecom Hexagn Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/feather/feather.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/ti-icons/css/themify-icons.css') ?>">
@@ -13,11 +13,13 @@
   <link rel="stylesheet" href="<?= base_url('assets/admin/css/maps/vertical-layout-light/style.css.map') ?>">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
+  <link rel="stylesheet"
+    href="<?= base_url('assets/admin/css/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/ti-icons/css/themify-icons.css') ?>">
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
-  <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2/select2.min.css')?>">
-  <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css')?>">
+  <link rel="stylesheet" href="<?= base_url('assets/admin/css/vendors/select2/select2.min.css') ?>">
+  <link rel="stylesheet"
+    href="<?= base_url('assets/admin/css/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') ?>">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url('assets/admin/css/style.css') ?>">
@@ -32,9 +34,15 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2"
+        <h4 class="mb-0">
+          <a class="col_dark" href="<?= base_url() ?>">
+            <i class="fa fa-shopping-cart col_oran fs-1 me-1 align-middle"></i> Ecom Hexagn <br>
+          </a>
+        </h4>
+        <a class="navbar-brand brand-logo mr-5" href="<? base_url() ?>"><img src="images/logo.svg" class="mr-2"
             alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="<? base_url() ?>"><img src="images/logo-mini.svg"
+            alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -113,7 +121,7 @@
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="<?= base_url('/admin/logout') ?>">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>

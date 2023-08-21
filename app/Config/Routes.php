@@ -32,9 +32,25 @@ $routes->set404Override();
 
 // ============Start Admin Routes============
 // $routes->get('/dashboard', 'Admin::dashboard');
-$routes->get('/dashboard', 'Admin::dashboard');
+// if (! $user->inGroup('superadmin', 'admin')) {
+//     //
+// }
+$routes->get('admin/dashboard', 'Admin::dashboard', ['filter' => 'adminAuth']);
+
+$routes->get('admin/logout', 'Admin::adminLogout');
+$routes->post('generate-description/(:any)', 'Admin::generateDescription/$1');
+
+
+
+// $routes->group('admin', ['filter' => 'auth:adminAuth'], function ($routes) {
+
+// });
+
 $routes->get('admin/login', 'Admin::login');
-// $routes->get('/dashboard', 'Admin::dashboard', ['filter' => 'auth', 'filterGroup' => 'admin']);
+$routes->post('admin/adminAuth', 'Admin::adminAuth');
+$routes->get('admin/register', 'Admin::register');
+$routes->post('admin/register_check', 'Admin::register_check');
+// $routes->get('/dashboard', 'Admin::dashboard', ['filter' => 'adminAuth', 'filterGroup' => 'adminAuth']);
 
 // Products routes
 $routes->get('/admin/product/all_products', 'Admin::all_products');
@@ -80,12 +96,25 @@ $routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
 
 
 $routes->get('/', 'Home::home');
+$routes->get('/product/single_product/(:num)', 'Home::single_product/$1');
+$routes->get('/allproducts', 'Home::allProducts');
+$routes->get('/home/apply_filters', 'Home::filter_kids_products');
 // carts 
 $routes->get('/cart', 'CartsController::cart');
 $routes->post('/cart/add/(:num)', 'CartsController::add/$1');
 $routes->get('/cart/remove/(:num)', 'CartsController::remove/$1');
 $routes->post('/cart/update/(:num)', 'CartsController::update/$1');
 $routes->get('/checkout', 'CartsController::checkout');
+// Payment
+$routes->post('/initiatePayment', 'PaymentController::initiatePayment');
+$routes->get('/createPayment', 'PaymentController::createPayment');
+$routes->get('/payment/executePayment', 'PaymentController::executePayment');
+$routes->get('/payment/success', 'PaymentController::executePayment');
+$routes->get('/payment/cancel', 'PaymentController::cancelPayment');
+
+// $routes->post('/initiatePayment', 'RazorpayController::initiatePayment');
+// $routes->post('razorpay/initiate-payment', 'RazorpayController::initiateRazorpayPayment');
+
 
 // ============End FrontEnd Routes============
 

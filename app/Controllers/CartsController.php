@@ -6,20 +6,27 @@ use App\Models\Carts;
 
 class CartsController extends BaseController
 {
+
     public function cart()
     {
+
+        $session = \Config\Services::session();
+        $customer_id = $session->get('customer_id');
+
+        if (!$customer_id) {
+            return redirect()->to('customer/login'); // Redirect to login page or any other appropriate action
+        }
         $cartModel = new Carts();
-        $data['cartProducts'] = $cartModel->getCartProducts();
+        $data['cartProducts'] = $cartModel->getCartProducts($customer_id);
         // Calculate total price
         $totalPrice = 0;
         foreach ($data['cartProducts'] as $product) {
             $totalPrice += $product->product_price * $product->quantity;
         }
         $data['totalPrice'] = $totalPrice;
-        // print_r($data);
-        // exit();
         return view('frontEnd/cart', $data);
     }
+    // add cart items
     public function add($id)
     {
         $cartModel = new Carts();
@@ -50,6 +57,7 @@ class CartsController extends BaseController
         return redirect()->to('/cart')->with('success', "Product added successfully");
     }
 
+    // remove cart items
     public function remove($id)
     {
         $cartModel = new Carts();
@@ -62,6 +70,7 @@ class CartsController extends BaseController
             return redirect()->to('/cart')->with('error', "Cart entry not found");
         }
     }
+    // update cart items
     public function update($id)
     {
         $cartModel = new Carts();
@@ -75,7 +84,21 @@ class CartsController extends BaseController
     }
     public function checkout()
     {
-        return view('frontend/checkout');
+        $session = \Config\Services::session();
+        $customer_id = $session->get('customer_id');
+
+        if (!$customer_id) {
+            return redirect()->to('customer/login'); // Redirect to login page or any other appropriate action
+        }
+        $cartModel = new Carts();
+        $data['cartProducts'] = $cartModel->getCartProducts($customer_id);
+        // Calculate total price
+        $totalPrice = 0;
+        foreach ($data['cartProducts'] as $product) {
+            $totalPrice += $product->product_price * $product->quantity;
+        }
+        $data['totalPrice'] = $totalPrice;
+        return view('frontend/checkout', $data);
     }
 
 }

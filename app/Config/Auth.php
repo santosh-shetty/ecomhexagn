@@ -38,7 +38,7 @@ class Auth extends ShieldAuth
             'driver' => 'Eloquent',
             'model' => \App\Models\AdminModel::class,
             'fields' => [
-                'username' => 'email',
+                'email' => 'email',
                 // Change this to your admin's email field
                 'password' => 'password',
                 // Change this to your admin's password field
@@ -118,9 +118,9 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
-        'register' => 'admin/dashboard',
-        'login' => 'admin/dashboard',
-        'logout' => 'admin/login',
+        'register' => 'dashboard',
+        'login' => 'dashboard',
+        'logout' => 'login',
         'force_reset' => '/',
     ];
 

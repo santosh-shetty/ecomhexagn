@@ -50,7 +50,7 @@ use App\Models\Products;
                             <div class="cart_3l1i">
                                 <a href="#"><img
                                         src="<?= base_url('assets/images/upload/' . $cartProduct->product_image) ?>"
-                                        alt="abc" class="w-100"></a>
+                                        alt="abc" class="w-100" style="object-fit: cover; height:180px;"></a>
                             </div>
                         </div>
                         <div class="col-md-9 col-9">
@@ -76,7 +76,20 @@ use App\Models\Products;
                             </div>
                         </div>
                     </div>
+                    <!-- Store carts detail in session for checkout ussed -->
+                    <?php $cartDetails[] = [
+                        'product_id' => $cartProduct->product_id,
+                        'product_name' => $cartProduct->product_name,
+                        'quantity' => $cartProduct->quantity,
+                        'total_price' => number_format($totalPrice, 2),
+                    ]; ?>
                 <?php endforeach; ?>
+                <?php if (!empty($cartDetails)): ?>
+                    <?php session()->set('cart_details', $cartDetails); ?>
+                    <? //php endif; ?>
+                <?php else: ?>
+                    <h6>No any Product on the cart.</h6>
+                <?php endif; ?>
             </div>
             <div class="col-md-4">
                 <div class="cart_3r">
