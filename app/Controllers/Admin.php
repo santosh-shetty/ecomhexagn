@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\adminModel;
 use App\Models\Categories;
 use App\Models\Brands;
+use App\Models\OrderModel;
 use App\Models\Products;
 use CodeIgniter\RESTful\Controller;
 use CodeIgniter\API\Response;
@@ -586,6 +587,34 @@ class Admin extends BaseController
     } else {
       $errorMessage = "Brand with ID '{$id}' not found.";
       return redirect()->to(base_url('admin/brands/all_brands'))->with('error', $errorMessage);
+    }
+  }
+
+  public function all_orders()
+  {
+    $ordersModel = new OrderModel();
+    $data['orders'] = $ordersModel->findAll();
+    return view('admin/Order/all_orders', $data);
+  }
+
+  public function delete_orders($id)
+  {
+    $ordersModel = new OrderModel();
+    $brands = $ordersModel->find($id);
+
+    if ($brands) {
+      // Delete associated products first
+      $productModel = new Products();
+      $productModel->where('brand_id', $id)->delete();
+
+      // Then delete the Brand
+      $ordersModel->delete($id);
+
+      $successMessage = "Order '{$brands['order_id']}' has been deleted successfully. and also delete that product which assign this order '{$brands['brand_name']}'";
+      return redirect()->to(base_url('admin/orders/all_orders'))->with('success', $successMessage);
+    } else {
+      $errorMessage = "Brand with ID '{$id}' not found.";
+      return redirect()->to(base_url('admin/orders/all_orders'))->with('error', $errorMessage);
     }
   }
 }

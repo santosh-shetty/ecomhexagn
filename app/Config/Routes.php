@@ -76,6 +76,10 @@ $routes->get('/admin/brands/view_brands/(:num)', 'Admin::view_brands/$1');
 $routes->get('/admin/brands/edit_brands/(:num)', 'Admin::edit_brands/$1');
 $routes->post('/admin/brands/check_edit_brands', 'Admin::check_edit_brands');
 $routes->get('/admin/brands/delete_brands/(:num)', 'Admin::delete_brands/$1');
+
+//Order Routes
+$routes->get('/admin/orders/all_orders', 'Admin::all_orders');
+
 // ============End Admin Routes============
 
 // ============Start FrontEnd Routes============
