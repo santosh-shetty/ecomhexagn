@@ -3,44 +3,6 @@
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    // Function to handle category and brand filtering
-    function applyFilters(selectedCategories, selectedBrands) {
-      $.ajax({
-        url: "<?= base_url('products/apply_filters'); ?>",
-        type: "POST",
-        data: {
-          categories: selectedCategories,
-          brands: selectedBrands
-        },
-        success: function(data) {
-          $("#prod_h2m").html(data);
-        }
-      });
-    }
-
-    $("input[type='checkbox']").change(function() {
-      var selectedCategories = [];
-      var selectedBrands = [];
-
-      // Collect selected categories
-      $("input[name='category']:checked").each(function() {
-        selectedCategories.push($(this).val());
-      });
-
-      // Collect selected brands
-      $("input[name='brand']:checked").each(function() {
-        selectedBrands.push($(this).val());
-      });
-
-      // Apply filters using AJAX
-      applyFilters(selectedCategories, selectedBrands);
-    });
-  });
-</script>
-
-
 <section id="center" class="center_o pt-3 pb-3 bg_light1">
   <div class="container-xl">
     <div class="row center_h1">
@@ -60,28 +22,30 @@
     <div class="row prod_pg1">
       <div class="col-md-3">
         <div class="prod_pg1l">
-          <div class="prod_pg1l1">
+          <!-- <div class="prod_pg1l1">
             <h5>FILTER BY</h5>
             <h6 class="fw-normal mt-3 mb-3">AVAILABILITY</h6>
             <div class="row m-0">
               <div class="form-check col-md-12 col-6">
-                <input type="checkbox" class="form-check-input" id="customCheck1">
-                <label class="form-check-label" for="customCheck1"><a href="detail.html">In stock (9)</a></label>
+                <input type="checkbox" class="form-check-input" value="1" name="quantity">
+                <label class="form-check-label" for="customCheck1">In stock</label>
               </div>
               <div class="form-check mt-2 col-md-12 col-6">
-                <input type="checkbox" class="form-check-input" id="customCheck1">
-                <label class="form-check-label" for="customCheck1"><a href="detail.html">Not available (3)</a></label>
+                <input type="checkbox" class="form-check-input" name="quantity" value="0" id="customCheck1">
+                <label class="form-check-label" for="customCheck1">Not available</label>
               </div>
             </div>
             <hr>
-          </div>
+          </div> -->
 
           <div>
             <h5 class="fw-normal mb-3">Category</h5>
-            <?php foreach ($categories as $category) : ?>
+            <?php foreach ($categories as $category): ?>
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="category" value="<?= $category['category_id']; ?>">
-                <label class="form-check-label"><?= $category['category_name']; ?></label>
+                <label class="form-check-label">
+                  <?= $category['category_name']; ?>
+                </label>
               </div>
             <?php endforeach; ?>
             <hr>
@@ -89,10 +53,12 @@
 
           <div>
             <h5 class="fw-normal mb-3">Brands</h5>
-            <?php foreach ($brands as $brand) : ?>
+            <?php foreach ($brands as $brand): ?>
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="brand" value="<?= $brand['brand_id']; ?>">
-                <label class="form-check-label"><?= $brand['brand_name']; ?></label>
+                <label class="form-check-label">
+                  <?= $brand['brand_name']; ?>
+                </label>
               </div>
             <?php endforeach; ?>
             <hr>
@@ -130,13 +96,13 @@
       </div>
       <div class="col-md-9">
         <div class="prod_pg1r">
-          <div class="prod_pg1r1 row">
+          <!-- <div class="prod_pg1r1 row">
             <div class="col-md-12">
               <h5 class="text-uppercase"> Popular Products</h5>
               <hr class="line">
             </div>
-          </div>
-          <div class="prod_pg1r2 m-0  row">
+          </div> -->
+          <!-- <div class="prod_pg1r2 m-0  row">
             <div class="col-md-4 col-sm-6">
               <div class="prod_pg1r2l">
                 <ul class="nav nav-tabs mb-0 border-0">
@@ -164,27 +130,57 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="prod_pg1r3 mt-4  row">
             <div class="tab-content">
               <div class="tab-pane active" id="home">
-                <div class="prod_h2m row">
+                <div id="productDiv" class="prod_h2m row gy-4">
                   <?php $limit = 1; ?>
-                  <?php foreach ($products as $product) : ?>
+                  <?php foreach ($products as $product): ?>
                     <?php if ($limit < 10) { ?>
                       <div class="col-md-4">
                         <div class="prod_h2i1 clearfix position-relative">
-                          <div class="prod_h2i1i text-center clearfix">
+                          <div class="prod_h2i1i text-center clearfix ">
                             <div class="grid clearfix">
                               <figure class="effect-jazz mb-0">
-                                <a href="detail.html"><img src="<?= base_url('assets/images/upload/' . $product->product_image) ?>" class="w-100" alt="abc" style="object-fit: cover; height:250px;"></a>
+                                <a href="<?= base_url('/product/single_product/' . $product->product_id) ?>">
+                                  <img src="<?= base_url('assets/images/upload/' . $product->product_image) ?>"
+                                    class="w-100 " alt="abc" style="object-fit: cover; height:250px;">
+                                </a>
                               </figure>
                             </div>
-                            <h6 class="text-capitalize mt-3"><a href="detail.html"><?= $product->product_name; ?></a></h6>
-                            <h5 class="mt-2 col_oran">&#8377;<?= $product->product_price; ?></h5>
-                            <h6 class="mb-0 mt-3 pb-3"><a href="detail.html" class="button_1 p-3 pt-2 pb-2"><i class="fa fa-shopping-basket"></i> Add to Cart</a></h6>
+                            <h6 class="text-capitalize mt-3">
+                              <a href="<?= base_url('/product/single_product/' . $product->product_id) ?>"><?= $product->product_name ?></a>
+                            </h6>
+                            <h5 class="mt-2 col_oran">&#8377;
+                              <?= $product->product_price ?>
+                            </h5>
+                            <form action="<?= base_url('/cart/add/' . $product->product_id) ?>" method="post">
+                              <h6 class="mb-0 mt-3 pb-3">
+                                <input type="hidden" value="<?= $product->product_id ?>" name="product_id">
+                                <input type="hidden" value="<?= $product->product_name ?>" name="product_name">
+                                <!-- Check if the customer is logged in -->
+                                <?php if (session()->has('customer_id')): ?>
+                                  <input type="hidden" value="<?= session('customer_id') ?>" name="customer_id">
+                                  <input type="hidden" value="<?= session('customer_name') ?>" name="customer_name">
+                                  <button type="submit" class="button_1 p-3 pt-2 pb-2">
+                                    <i class="fa fa-shopping-basket"></i> Add to Cart
+                                  </button>
+                                <?php else: ?>
+                                  <a href="<?= base_url('customer/login') ?>" class="button_1 p-3 pt-2 pb-2">
+                                    <i class="fa fa-sign-in"></i> Login to Add to Cart
+                                  </a>
+                                <?php endif; ?>
+                              </h6>
+                            </form>
+                          </div>
+                          <div class="prod_h2i1i1 pt-2 clearfix position-absolute">
+                            <h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">
+                              <?= $product->category_name ?>
+                            </h6>
                           </div>
                         </div>
+
                       </div>
                     <?php }
                     $limit++; ?>
@@ -193,7 +189,8 @@
               </div>
             </div>
           </div>
-          <div class="pages mt-4 row text-center">
+          <!-- Pagination -->
+          <!-- <div class="pages mt-4 row text-center">
             <div class="col-md-12">
               <ul class="mb-0">
                 <li><a href="detail.html"><i class="fa fa-chevron-left"></i></a></li>
@@ -206,10 +203,102 @@
                 <li><a href="detail.html"><i class="fa fa-chevron-right"></i></a></li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </div>
 </section>
+<script>
+  $(document).ready(function () {
+    $("input[name='category'], input[name='brand'], input[name='quantity']").change(function () {
+
+      var selectedCategories = [];
+      var selectedBrands = [];
+      var selectedQuantity = [];
+
+      // Loop through all checked checkboxes and collect their values
+      $("input[name='category']:checked").each(function () {
+        selectedCategories.push($(this).val());
+      });
+
+      $("input[name='brand']:checked").each(function () {
+        selectedBrands.push($(this).val());
+      });
+      $("input[name='quantity']:checked").each(function () {
+        selectedQuantity.push($(this).val());
+      });
+      // console.log(selectedCategories);
+      // console.log(selectedBrands);
+      console.log(selectedQuantity);
+      // Send AJAX request to filter by category and brand
+      $.ajax({
+        url: "<?= base_url('products/filterProducts'); ?>",
+        type: "POST",
+        data: {
+          categories: selectedCategories,
+          brands: selectedBrands,
+          quantity: selectedQuantity,
+          <?= csrf_token() ?>: "<?= csrf_hash() ?>"
+        },
+        dataType: 'json',
+        success: function (data) {
+          var productHTML = '';
+
+          // Loop through the filtered products and build the HTML
+          $.each(data, function (index, product) {
+            productHTML += `
+<div class="col-md-4">
+<div class="prod_h2i1 clearfix position-relative">
+<div class="prod_h2i1i text-center clearfix">
+ <div class="grid clearfix">
+    <figure class="effect-jazz mb-0">
+    <a href="<?= base_url('/product/single_product/') ?>${product.product_id}">
+      <img src="<?= base_url('assets/images/upload/') ?>${product.product_image}" class="w-100" alt="abc" style="object-fit: cover; height:250px;">
+    </a>
+   </figure>
+ </div>
+ <h6 class="text-capitalize mt-3">
+   <a href="<?= base_url('/product/single_product/') ?>${product.product_id}">${product.product_name}</a>
+ </h6>
+ <h5 class="mt-2 col_oran">&#8377;${product.product_price}</h5>
+ <form action="<?= base_url('/cart/add/') ?>${product.product_id}" method="post">
+ <h6 class="mb-0 mt-3 pb-3">
+  <input type="hidden" value="${product.product_id}" name="product_id">
+  <input type="hidden" value="${product.product_name}" name="product_name">
+  <?php if (session()->has('customer_id')): ?>
+                                <input type="hidden" value="<?= session('customer_id') ?>" name="customer_id">
+                                <input type="hidden" value="<?= session('customer_name') ?>" name="customer_name">
+                                <button type="submit" class="button_1 p-3 pt-2 pb-2">
+                                  <i class="fa fa-shopping-basket"></i> Add to Cart
+                                </button>
+  <?php else: ?>
+                                <a href="<?= base_url('customer/login') ?>" class="button_1 p-3 pt-2 pb-2">
+                                  <i class="fa fa-sign-in"></i> Login to Add to Cart
+                                </a>
+  <?php endif; ?>
+  </h6>
+</form>
+</div>
+<div class="prod_h2i1i1 pt-2 clearfix position-absolute">
+<h6 class="mb-0 bg_green d-inline-block p-3 pt-2 pb-2 text-white">
+${product.category_name}
+</h6>
+</div>
+</div>
+</div>`;
+          });
+
+          $("#productDiv").html(productHTML);
+        },
+        error: function (xhr, status, error) {
+          console.log("AJAX error:", error);
+        }
+      });
+    });
+  });
+
+</script>
+
+
 <?php include 'includes/footer.php'; ?>

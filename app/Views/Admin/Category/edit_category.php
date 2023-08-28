@@ -20,7 +20,8 @@
                     </ul>
                 </div>
             <?php endif; ?>
-            <form class="form-sample" action="<?= base_url('admin/category/check_edit_category') ?>" method="post">
+            <form class="form-sample" action="<?= base_url('admin/category/check_edit_category') ?>" method="post"
+                enctype="multipart/form-data">
                 <!-- For get id -->
                 <input type="hidden" name="category_id" class="form-control" value="<?= $category['category_id'] ?>">
                 <div class="row">

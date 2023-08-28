@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             <?php endif; ?>
-            <form class="form-sample" action="<?= base_url('/admin/brands/check_add_brands') ?>" method="post">
+            <form class="form-sample" action="<?= base_url('/admin/brands/check_add_brands') ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">

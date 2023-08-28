@@ -8,52 +8,188 @@ use App\Models\Brands;
 use App\Models\Products;
 use CodeIgniter\RESTful\Controller;
 use CodeIgniter\API\Response;
+use GuzzleHttp\Client;
 
 class Admin extends BaseController
 {
-  public function generateDescription($productName)
+  // ====Copi ai======
+  public function generateProductDescription()
   {
-    $description = $this->callTuringAPI($productName);
 
-    if ($description) {
-      return $this->respond($description);
-    } else {
-      return $this->fail('Unable to generate product description');
-    }
+    // Replace with your Copy.ai API key
+    $apiKey = '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';
+    // $gpt3Endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+    $gpt3Endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
+    $productName = "men buggy white shirt ";
+
+    $client = new Client();
+    $response = $client->post($gpt3Endpoint, [
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $apiKey,
+        ],
+        'json' => [
+            'prompt' => 'Generate a product description for ' . $productName,
+            'max_tokens' => 100, // Adjust as needed
+        ],
+    ]);
+
+    $result = json_decode($response->getBody(), true);
+    print_r($result['choices'][0]['text']);
+    exit();
+    // Load a view to display the generated description
+    return view('product_description', ['description' => $description]);
   }
+  // public function generateProductDescription()
+  // {
 
-  private function callTuringAPI($productName)
-  {
-    $apiKey = 'YOUR_API_KEY';
-    $endpoint = 'https://api.turing.com/v2/engines/text-davinci-002/generate';
+  //   // Replace with your Copy.ai API key
+  //   $apiKey = 'dcbcfff5-f39a-4341-9173-c2f5bba81546';
 
-    $data = [
-      'prompt' => "Generate a description for a product named '$productName'",
-      'max_tokens' => 50, // Adjust the number of tokens as needed
-    ];
+  //   // Load the GuzzleHTTP client library (Make sure you have Guzzle installed)
+  //   $httpClient = new Client();
 
-    $headers = [
-      'Content-Type: application/json',
-      'Authorization: Bearer ' . $apiKey,
-    ];
+  //   // AI API endpoint
+  //   $apiEndpoint = 'https://api.copy.ai/api/workflow/PKGW-8719009a-e693-4638-b131-018747ba283a/run';
 
-    $curl = curl_init($endpoint);
-    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  //   // Your API key
+  //   $apiKey = 'your_api_key_here';
 
-    $response = curl_exec($curl);
-    curl_close($curl);
+  //   // Data for the AI request
+  //   $data = [
+  //     'prompt' => 'Generate a product description for a new smartphone.',
+  //     'max_tokens' => 100, // Adjust as needed
+  //   ];
 
-    $responseBody = json_decode($response, true);
+  //   // Make the API request using Guzzle
+  //   $response = $httpClient->request('POST', $apiEndpoint, [
+  //     'headers' => [
+  //       'Authorization' => 'Bearer ' . $apiKey,
+  //       'Content-Type' => 'application/json',
+  //     ],
+  //     'json' => $data,
+  //   ]);
 
-    if (isset($responseBody['generated'])) {
-      return $responseBody['generated'];
-    } else {
-      return null;
-    }
-  }
+  //   // Get the AI-generated description
+  //   $description = $response->getBody()->getContents();
+
+  //   // Display the description
+  //   echo $description;
+
+  // }
+
+  // Text Razer
+  // public function generateProductDescription()
+  // {
+  //   // Replace with your TextRazor API key
+  //   $apiKey = '7235670911739443f2c19edbf33e3445d2e64867c735f2469133dd25';
+  //   // Product name for which description is generated
+  //   $productName = 'Mens Buggy Shirt';
+
+  //   // Initialize Guzzle HTTP client
+  //   $client = new Client();
+
+  //   // Make API request to TextRazor
+  //   $response = $client->post('https://api.textrazor.com/', [
+  //     'form_params' => [
+  //       'apiKey' => $apiKey,
+  //       'text' => "Generate a product description for $productName.",
+  //     ],
+  //   ]);
+
+  //   // Debugging: Display the entire API response
+  //   $responseData = json_decode($response->getBody(), true);
+  //   print_r($responseData);
+
+  //   // Check if the 'response' key exists and contains 'sentences'
+  //   if (isset($responseData['response']['sentences'][0]['text'])) {
+  //     $description = $responseData['response']['sentences'][0]['text'];
+
+  //     // Display the generated description
+  //     echo $description;
+  //   } else {
+  //     echo "Unable to generate description.";
+  //   }
+  // }
+  //====== Chat GPT========
+  // public function generateProductDescription()
+  // {
+  //   // Replace with your OpenAI API key
+  //   $apiKey = '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';
+
+  //   // Product name for which description is generated
+  //   $productName = 'Mens Buggy Shirt';
+
+  //   // Construct the prompt for ChatGPT
+  //   $prompt = "Generate a product description for $productName. Description:";
+
+  //   // Initialize Guzzle HTTP client
+  //   $client = new Client();
+
+  //   // Make API request to ChatGPT
+  //   $response = $client->post('https://api.openai.com/v1/engines/davinci-codex/completions', [
+  //     'headers' => [
+  //       'Content-Type' => 'application/json',
+  //       'Authorization' => 'Bearer ' . $apiKey,
+  //     ],
+  //     'json' => [
+  //       'prompt' => $prompt,
+  //       'max_tokens' => 100,
+  //     ],
+  //   ]);
+
+  //   // Get the generated description from the API response
+  //   $description = json_decode($response->getBody(), true)['choices'][0]['text'];
+
+  //   // Display the generated description
+  //   echo $description;
+  // }
+
+  // private function generateDescription($productName)
+  // {
+  //   // Replace this with the actual Hugging Face API endpoint and API key
+  //   $apiUrl = 'https://api.openai.com/v1/chat/completions'; 
+  //   $apiKey = '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';
+
+  //   // Input for text generation
+  //   $inputText = "Generate a product description for $productName.";
+
+  //   // Create JSON data for API request
+  //   $data = json_encode([
+  //     'inputs' => $inputText,
+  //     'model'=>'text-davinci-003'
+  //   ]);
+
+  //   // Set headers for API request
+  //   $headers = [
+  //     'Authorization' => 'Bearer ' . $apiKey,
+  //     'Content-Type' => 'application/json',
+  //   ];
+
+  //   // Use Guzzle to send the API request
+  //   $client = new Client();
+  //   $response = $client->post($apiUrl, [
+  //     'headers' => $headers,
+  //     'body' => $data,
+  //   ]);
+
+  //   // Extract and return the generated description from the API response
+  //   $generatedDescription = json_decode($response->getBody(), true)['generated_text'];
+  //   return $generatedDescription;
+  // }
+
+  // public function generateProductDescription()
+  // {
+  //   $productName = 'mens buggy shirt';
+  //   $description = $this->generateDescription($productName);
+
+  //   print_r($description);
+  //   exit();
+  // }
+
+
+
+
   // public function generateDescription($productName)
   // {
   //   $apiKey = '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';
@@ -364,9 +500,9 @@ class Admin extends BaseController
     $categoryModel = new Categories();
     $Rules = [
       'file' => [
-        'uploaded[product_image]',
-        'ext_in[product_image,jpg,jpeg,png,webp]',
-        'max_size[product_image,2048]',
+        'uploaded[category_image]',
+        'ext_in[category_image,jpg,jpeg,png,webp]',
+        'max_size[category_image,2048]',
       ],
       'category_name' => 'required',
       'category_desc' => 'required',
@@ -383,6 +519,7 @@ class Admin extends BaseController
         'category_name' => $this->request->getVar('category_name'),
         'category_desc' => $this->request->getVar('category_desc'),
         'status' => $this->request->getVar('status'),
+        'category_image' => $img_name,
         'slug' => $this->request->getVar('slug'),
       ];
 
@@ -412,9 +549,9 @@ class Admin extends BaseController
     $categoryModel = new Categories();
     $Rules = [
       'file' => [
-        'uploaded[product_image]',
-        'ext_in[product_image,jpg,jpeg,png,webp]',
-        'max_size[product_image,2048]',
+        'uploaded[category_image]',
+        'ext_in[category_image,jpg,jpeg,png,webp]',
+        'max_size[category_image,2048]',
       ],
       'category_name' => 'required',
       'category_desc' => 'required',
@@ -424,20 +561,22 @@ class Admin extends BaseController
 
     // Validate  fields
     if ($this->validate($Rules)) {
-      $img = $this->request->getFile('product_image');
+      $img = $this->request->getFile('category_image');
       $img_name = $img->getName();
-      $img->move(ROOTPATH . 'public/assets/images/upload/category', $img_name);
+      $img->move(ROOTPATH . 'public/assets/images/upload/category/', $img_name);
       $data = [
         'category_name' => $this->request->getVar('category_name'),
         'category_desc' => $this->request->getVar('category_desc'),
         'status' => $this->request->getVar('status'),
+        'category_image' => $img_name,
         'slug' => $this->request->getVar('slug'),
       ];
       $id = $this->request->getVar('category_id');
 
       $categoryModel->update(['category_id' => $id], $data);
       $successMessage = "Category has been Updated successfully.";
-      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);;
+      return redirect()->to(base_url('/admin/category/all_categories'))->with('success', $successMessage);
+      ;
     } else {
       // Validation failed, redirect back with validation errors
       return redirect()->back()->withInput()->with('errors', array_merge($this->validator->getErrors(), $this->validator->getErrors()));
@@ -483,13 +622,13 @@ class Admin extends BaseController
     $brandsModel = new Brands();
     $Rules = [
       'file' => [
-        'uploaded[product_image]',
-        'ext_in[product_image,jpg,jpeg,png,webp]',
-        'max_size[product_image,2048]',
+        'uploaded[brand_image]',
+        'ext_in[brand_image,jpg,jpeg,png,webp]',
+        'max_size[brand_image,2048]',
       ],
       'brand_name' => 'required',
       'brand_desc' => 'required',
-      'brand_image' => 'required',
+      // 'brand_image' => 'required',
       // 'status' => 'required',
       // 'slug' => 'required',
     ];
@@ -534,9 +673,9 @@ class Admin extends BaseController
     $brandsModel = new Brands();
     $Rules = [
       'file' => [
-        'uploaded[product_image]',
-        'ext_in[product_image,jpg,jpeg,png,webp]',
-        'max_size[product_image,2048]',
+        'uploaded[brand_image]',
+        'ext_in[brand_image,jpg,jpeg,png,webp]',
+        'max_size[brand_image,2048]',
       ],
       'brand_name' => 'required',
       'brand_desc' => 'required',

@@ -14,8 +14,9 @@ class Home extends BaseController
         $categoryModel = new Categories();
         // $data['products'] = $productModel->where('feature_product', 1)->find();
         $data['products'] = $productModel->getFeatureProduct();
+        $data['latestProducts'] = $productModel->getAllProduct();
         // print_r($data);exit();
-        
+
         $data['categories'] = $categoryModel->findAll();
         return view('frontEnd/home', $data);
     }
@@ -29,20 +30,30 @@ class Home extends BaseController
         $data['products'] = $productModel->getAllProduct();
         return view('frontEnd/allproducts', $data);
     }
-    public function apply_filters()
+    public function filterByCategory()
     {
-        $selectedCategories = $this->request->getPost('categories');
-        $selectedBrands = $this->request->getPost('brands');
+
+        $selectedCategory = $this->request->getVar('category');
+        // echo "selected Category";
+        // echo $selectedCategory;exit();
         $productModel = new Products();
+        $categoryModel = new Categories();
+        $brandsModel = new Brands();
+        $data['brands'] = $brandsModel->findall();
+        $data['categories'] = $categoryModel->findAll();
 
-        if (!empty($selectedCategories) || !empty($selectedBrands)) {
-            $data['products'] = $productModel->applyFilters($selectedCategories, $selectedBrands);
+        if (empty($selectedCategory)) {
+            // No category selected, get all products
+            $filteredProducts = $productModel->getAllProducts();
         } else {
-            $data['products'] = $productModel->getAllProducts();
+            // Filter products by the selected category
+            $filteredProducts = $productModel->getProductByCategory($selectedCategory);
         }
+        $filteredProducts = $productModel->getProductByCategory($selectedCategory);
+        return $this->response->setJSON($filteredProducts);
 
-        return view('filtered_products', $data);
     }
+   
     public function single_product($id)
     {
         $productModel = new Products();
