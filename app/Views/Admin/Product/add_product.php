@@ -251,6 +251,8 @@
 <script>
     $(document).ready(function () {
         $("#generateButton").click(function () {
+             // Add loading animation
+             $(".img-container").html('<div class="loader"></div>');
             // Get the form data
             var formData = {
                 prompt: $("#prompt").val() // Get the prompt input value
