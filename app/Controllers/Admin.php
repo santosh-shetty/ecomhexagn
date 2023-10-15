@@ -25,14 +25,15 @@ class Admin extends BaseController
 
     $client = new Client();
     $response = $client->post($gpt3Endpoint, [
-        'headers' => [
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $apiKey,
-        ],
-        'json' => [
-            'prompt' => 'Generate a product description for ' . $productName,
-            'max_tokens' => 100, // Adjust as needed
-        ],
+      'headers' => [
+        'Content-Type' => 'application/json',
+        'Authorization' => 'Bearer ' . $apiKey,
+      ],
+      'json' => [
+        'prompt' => 'Generate a product description for ' . $productName,
+        'max_tokens' => 100,
+        // Adjust as needed
+      ],
     ]);
 
     $result = json_decode($response->getBody(), true);
@@ -235,6 +236,7 @@ class Admin extends BaseController
   //   // return $description;
   // }
 
+  // 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
   public function login()
   {
 
@@ -443,6 +445,7 @@ class Admin extends BaseController
     // print_r($data);exit();
     return view('admin/product/add_product', $data);
   }
+
   public function delete_product($id)
   {
     $productModel = new Products();

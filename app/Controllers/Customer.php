@@ -48,6 +48,79 @@ class Customer extends BaseController
     {
         return view('FrontEnd/Customer/login');
     }
+    public function google_login()
+    {
+        // Client Secret = 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
+        // Client ID =745093585128-26ktiei7phc5fhea9j3571oc343r223d.apps.googleusercontent.com
+
+        // /Create a new instance of Google API client
+        // include_once APPPATH . "libraries/vendor/autoload.php";
+
+        // $google_client = new Google_Client();
+
+        // $google_client->setClientId('745093585128-26ktiei7phc5fhea9j3571oc343r223d.apps.googleusercontent.com');
+        // $google_client->setClientSecret('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');
+        // $google_client->setRedirectUri('http://localhost:8080/customer/google-login');
+        // $google_client->addScope('email');
+        // $google_client->addScope('profile');
+        // if ($this->request->getVar('code')) {
+        //     $token = $google_client->fetchAccessTokenWithAuthCode($this->request->getVar('code'));
+
+        //     if (!isset($token["error"])) {
+        //         $google_client->setAccessToken($token['access_token']);
+
+        //         $this->session->set('access_token', $token['access_token']);
+
+        //         $google_service = new Google_Service_Oauth2($google_client);
+
+        //         $data = $google_service->userinfo->get();
+        //         echo "<pre>";
+        //         print_r($data);
+
+        //         // $current_datetime = date('Y-m-d H:i:s');
+        //         if ($this->session->get('access_token')) {
+        //             $data['loginButton'] = $google_client->createAuthUrl();
+        //         }
+
+        //         // if ($this->google_login_model->Is_already_register($data['id'])) {
+        //         //     //update data
+        //         //     $user_data = array(
+        //         //         'first_name' => $data['given_name'],
+        //         //         'last_name' => $data['family_name'],
+        //         //         'email_address' => $data['email'],
+        //         //         'profile_picture' => $data['picture'],
+        //         //         'updated_at' => $current_datetime
+        //         //     );
+
+        //         //     $this->google_login_model->Update_user_data($user_data, $data['id']);
+        //         // } else {
+        //         //     //insert data
+        //         //     $user_data = array(
+        //         //         'login_oauth_uid' => $data['id'],
+        //         //         'first_name' => $data['given_name'],
+        //         //         'last_name' => $data['family_name'],
+        //         //         'email_address' => $data['email'],
+        //         //         'profile_picture' => $data['picture'],
+        //         //         'created_at' => $current_datetime
+        //         //     );
+
+        //         //     $this->google_login_model->Insert_user_data($user_data);
+        //         // }
+        //         // $this->session->set_userdata('user_data', $user_data);
+        //     }
+        // }
+        // $login_button = '';
+        // if (!$this->session->userdata('access_token')) {
+        //     $login_button = '<a href="' . $google_client->createAuthUrl() . '"><img src="' . base_url() . 'asset/sign-in-with-google.png" /></a>';
+        //     $data['login_button'] = $login_button;
+        //     $this->load->view('google_login', $data);
+        // } else {
+        //     $this->load->view('google_login', $data);
+        // }
+
+
+        return view('FrontEnd/Customer/google_login');
+    }
     public function customerAuth()
     {
         $customerModel = new CustomersModel();

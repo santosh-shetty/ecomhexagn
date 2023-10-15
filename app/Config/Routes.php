@@ -61,6 +61,10 @@ $routes->get('/admin/product/add_product', 'Admin::add_product');
 $routes->get('/admin/product/delete_product/(:num)', 'Admin::delete_product/$1');
 $routes->get('/admin/product/view_product/(:num)', 'Admin::view_product/$1');
 $routes->get('/admin/product/edit_product/(:num)', 'Admin::edit_product/$1');
+// Open Ai Routes
+$routes->get('openai', 'OpenAIController::index');
+$routes->post('openai/generateImages', 'OpenAIController::generateImages');
+
 // Categories Routes
 $routes->get('/admin/category/all_categories', 'Admin::all_categories');
 $routes->get('/admin/category/add_category', 'Admin::add_category');
@@ -98,6 +102,7 @@ $routes->get('customer/login', 'Customer::login');
 $routes->post('customer/login', 'Customer::customerAuth');
 $routes->get('customer/logout', 'Customer::logout');
 $routes->get('/test', 'Customer::test', ['filter' => 'customerAuth']);
+$routes->get('customer/google-login', 'Customer::google_login');
 
 
 $routes->get('/', 'Home::home');
